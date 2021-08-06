@@ -1,0 +1,7 @@
+{
+    "port":5000,
+    "jwtSecret":"tim youtuber mern",
+    "MongoUri":"mongodb+srv://tim1:timkapva13@cluster0.6rykj.mongodb.net/app?retryWrites=true&w=majority",
+    "baseUrl": "http://localhost:5000"
+    
+}
