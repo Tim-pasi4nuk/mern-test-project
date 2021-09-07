@@ -1,14 +1,18 @@
 const express = require('express')
 const config = require('config')
 const mongoose = require('mongoose')
-const {path} = require('path')
+const path = require('path')
 const app = express()
 
 app.use(express.json({extended:true}))
 
-app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api/link', require('./routes/link.routes'))
+app.use('/api/auth', require('./routes/auth.routes'))
+app.use('/api/cargo', require('./routes/cargo.routes'))
+app.use('/api/vehile', require('./routes/vehile.routes'))
+app.use('/api/search', require('./routes/search.routes'))
 app.use('/t', require('./routes/redirect.routes'))
+
 
 if(process.env.NODE_ENV === 'produtcion'){
     app.use('/', express.static(path.join(__dirname,'client','build')))

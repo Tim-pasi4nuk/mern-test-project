@@ -1,5 +1,15 @@
 @import "~materialize-css/dist/css/materialize.min.css";
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  min-height: 90vh;
+  flex: 1 0 auto;
+}
 
 input.yellow-input {
   border-bottom: 1px border solid #fff!important;
@@ -11,10 +21,10 @@ input.yellow-input + label {
 }
 
 input.yellow-input:focus + label {
-  color:#ffeb3b !important;
+  color:#d7ccc8 !important;
 }
 
 input.yellow-input:focus{
-  border-bottom: 1px border solid #ffeb3b!important;
-  box-shadow: 0 1px 0 0 #ffeb3b!important;
+  border-bottom: 1px border solid #d7ccc8!important;
+  box-shadow: 0 1px 0 0 #d7ccc8!important;
 }
