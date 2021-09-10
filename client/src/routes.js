@@ -16,53 +16,53 @@ export const useRoutes = IsAuthenticated => {
     if (IsAuthenticated){
         return (
             <Switch>
-                <Route path="/links" exact>
+                <Route path="/links" >
                     <LinksPage />
                 </Route>
-                <Route path="/create" exact>
+                <Route path="/create">
                     <CreatePage />
                 </Route>
                 <Route path="/detail/:id">
                     <DetailPage />
                 </Route>
-                <Route path="/search" exact>
+                <Route path="/search" >
                     <SearchPage />
                 </Route>
-                <Route path="/cabinet" exact>
+                <Route path="/cabinet" >
                     <CabinetPage />
                 </Route>
-                <Route path="/vehile" exact>
+                <Route path="/vehile" >
                     <VehilePage />
                 </Route>
-                <Route path="/cargo" exact>
+                <Route path="/cargo" >
                     <CargoPage />
                 </Route>
                 <Route path="/start" exact>
                     <StartPage />
                 </Route>
-                <Route path="/subscribe" exact>
+                <Route path="/SubscribePage" >
                     <SubscribePage />
                 </Route>
-                <Redirect to="/search" />
+                <Redirect to="/start" />
             </Switch>
         )
     }
 
     return (
         <Switch>
-            <Route path="/login" exact>
+            <Route path="/login" >
                 <LoginPage />
             </Route>
-            <Route path="/loginCreate" exact>
+            <Route path="/loginCreate">
                 <LoginCreate />
             </Route>
-            <Route path="/register" exact>
+            <Route path="/register">
                 <RegisterPage />
             </Route>
-            <Route path="/search" exact>
+            <Route path="/search">
                     <SearchPage />
             </Route>
-            <Redirect to="/search" />
+            <Redirect to="/start" />
         </Switch>
     )
 }

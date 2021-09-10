@@ -14,7 +14,7 @@ function App() {
   const routes = useRoutes(isAuthenticated)
 
   if(!ready){
-    <Loader />
+    return <Loader />
   }
 
   return (

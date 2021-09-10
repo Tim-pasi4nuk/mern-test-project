@@ -14,12 +14,13 @@ app.use('/api/search', require('./routes/search.routes'))
 app.use('/t', require('./routes/redirect.routes'))
 
 
-if(process.env.NODE_ENV === 'produtcion'){
-    app.use('/', express.static(path.join(__dirname,'client','build')))
+if (process.env.NODE_ENV === 'production') {
+    app.use('/', express.static(path.join(__dirname, 'client', 'build')))
+  
     app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     })
-}
+  }
 
 const PORT = config.get('port') || 5000
 

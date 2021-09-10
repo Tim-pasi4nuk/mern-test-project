@@ -96,14 +96,7 @@ export const CabinetPage = () => {
             <div className="container">
             <h6>Имя: {userInfo.userName}</h6>
             <h6>email: {userInfo.email}</h6>
-            {userInfo.phone.map((phono, index) => {
-                return (
-                    <>
-                    <h6>Телефон: {phono}</h6>
-                    </>
-                )
-            })}
-            
+             <h6>Телефон: {userInfo.phone}</h6>
             {sub && <>
             
             <h6>Подписка действительна до:{new Date(userInfo.dateSubscribe).toLocaleDateString()}</h6>

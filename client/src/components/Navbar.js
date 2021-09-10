@@ -42,7 +42,7 @@ export const Navbar = () => {
             <div className="nav-wrapper #6d4c41 brown darken-1 " >
                 <span className="brand-logo" style={{padding:'0 2rem'}}>Лого</span>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
-                    {!sub && <li><NavLink to ="/subscribe">Купить подписку</NavLink></li>}
+                    {!sub && <li><NavLink to ="/SubscribePage">Купить подписку</NavLink></li>}
                     <li><NavLink className="sidenav-close" to ="/search">Поиск</NavLink></li>
                     <li><NavLink className="sidenav-close" to ="/cargo">Создать груз</NavLink></li>
                     <li><NavLink className="sidenav-close" to ="/vehile">Создать транспорт</NavLink></li>
@@ -55,7 +55,7 @@ export const Navbar = () => {
 
         <ul id="slide-out" className="sidenav #6d4c41 brown white-text darken-1">
             <li><span className="brand-logo" style={{padding:'0 2rem'}}>Лого</span></li>
-            {!sub && <li><NavLink to ="/subscribe">Купить подписку</NavLink></li>}
+            {!sub && <li><NavLink className="sidenav-close white-text" to ="/SubscribePage">Купить подписку</NavLink></li>}
             <li><NavLink className="sidenav-close white-text" to ="/search"><i className="material-icons white-text">search</i>Поиск</NavLink></li>
             <li><NavLink className="sidenav-close white-text" to ="/cargo"><i className="material-icons white-text">add_to_queue</i>Создать груз</NavLink></li>
             <li><NavLink className="sidenav-close white-text" to ="/vehile"><i className="material-icons white-text">add_to_queue</i>Создать транспорт</NavLink></li>
