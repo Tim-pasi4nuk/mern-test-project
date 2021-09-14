@@ -12,6 +12,7 @@ import { CargoPage } from "./pages/CargoPage"
 import { VehilePage } from "./pages/VehilePage"
 import { LoginCreate } from "./pages/LoginCreatepage"
 import { SubscribePage }  from "./pages/SubscribePage"
+import { AboutUsPage } from "./pages/AboutUsPage"
 export const useRoutes = IsAuthenticated => {
     if (IsAuthenticated){
         return (
@@ -37,13 +38,16 @@ export const useRoutes = IsAuthenticated => {
                 <Route path="/cargo" >
                     <CargoPage />
                 </Route>
-                <Route path="/start" exact>
+                {/* <Route path="/" >
                     <StartPage />
-                </Route>
+                </Route> */}
                 <Route path="/SubscribePage" >
                     <SubscribePage />
                 </Route>
-                <Redirect to="/start" />
+                <Route path="/about">
+                    <AboutUsPage />
+                </Route>
+                <Redirect to="/search" />
             </Switch>
         )
     }
@@ -62,7 +66,10 @@ export const useRoutes = IsAuthenticated => {
             <Route path="/search">
                     <SearchPage />
             </Route>
-            <Redirect to="/start" />
+            <Route path="/about">
+                    <AboutUsPage />
+                </Route>    
+            <Redirect to="/search" />
         </Switch>
     )
 }

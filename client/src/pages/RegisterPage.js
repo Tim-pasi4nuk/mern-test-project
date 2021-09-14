@@ -39,13 +39,12 @@ export const RegisterPage = () => {
     <div className="row">
         <form className="col s12">
         <h4 className="center">Зарегистрироваться</h4>
-        <div className="card #6d4c41 brown darken-1">
+        <div className="card #c62828 red darken-1">
             <div className="card-content white-text">
-                <div className="row"></div>
+                
                     <div className="row white-text">
                         <div className="input-field col s12 m6">
                             <input
-                            placeholder="Введите email"
                             id="email"
                             type="text" 
                             name="email"
@@ -56,8 +55,7 @@ export const RegisterPage = () => {
                             <label htmlFor="email">Email</label>
                         </div>
                         <div className="input-field col s12 m6">
-                            <input 
-                            placeholder="Пароль" 
+                            <input  
                             id="password" 
                             type="password" 
                             name="password"
@@ -71,7 +69,6 @@ export const RegisterPage = () => {
                     <div className="row">
                         <div className="input-field col s12 m6 ">
                             <input 
-                            placeholder="Имя" 
                             id="name" 
                             type="text" 
                             name="userName"
@@ -83,7 +80,6 @@ export const RegisterPage = () => {
                         </div>
                         <div className="input-field col s12 m6 ">
                             <input 
-                            placeholder="Телефон" 
                             id="phone" 
                             type="text" 
                             name="phone"
@@ -97,7 +93,7 @@ export const RegisterPage = () => {
                     <div className="row center">
                         <div className="card-action">
                             <button 
-                            className="btn white-text #6d4c41 brown darken-3"
+                            className="btn white-text #c62828 red darken-1"
                             onClick={registerHandler}
                             disabled={loading}
                             >

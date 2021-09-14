@@ -14,7 +14,7 @@ export const CargoPage = () => {
     const today = new Date()
     const [userInfo, setUserInfo] = useState({email:'', links:[], subscribe:'', dateSubscribe:'', phone:'', userName:''})
     const  [form, setForm] = useState({
-        dateFrom:today.toISOString().substring(0, 10), dateTo:today.toISOString().substring(0, 10), regionFrom:'Украина', regionTo:'Украина', cityFrom:'', cityTo:'', typeCargo:'', typeCar:'', amountCar:'', value:'', valuta:'', phone:'', email:'', userName:'', capacity:'', obem:'', about:''
+        dateFrom:today.toISOString().substring(0, 10), dateTo:today.toISOString().substring(0, 10), regionFrom:'Украина', regionTo:'Украина', cityFrom:'', cityTo:'', typeItem:'', typeCar:'', amountCar:'', value:'', valuta:'', phone:'', email:'', userName:'', capacity:'', obem:'', about:' ', aboutHeigth:' ', aboutWidth:' ', aboutDepth:' '
     })
 
     
@@ -53,7 +53,7 @@ export const CargoPage = () => {
         form.email=userInfo.email
         form.phone=userInfo.phone
         form.userName=userInfo.userName
-        form.about = 'Ширина:' + form.aboutWidth +' Висота:' + form.aboutHeigth +' Глубина:'+ form.aboutDepth
+        form.about = 'Шир:' + form.aboutWidth +' Выс:' + form.aboutHeigth +' Глуб:'+ form.aboutDepth
         console.log(form)
         setForm ({...form, [even.target.name]: even.target.value})
     }
@@ -145,14 +145,14 @@ export const CargoPage = () => {
                 <div className="input-field col s6 m6">
                     <input 
                     placeholder="Запчасти"
-                    id="typeCargo" 
+                    id="typeItem" 
                     type="text" 
-                    name="typeCargo"
+                    name="typeItem"
                     className="validate" 
-                    value={form.typeCargo}
+                    value={form.typeItem}
                     onChange={changeHandler} 
                     />
-                    <label htmlFor="typeCar">Характер груза</label>
+                    <label htmlFor="typeItem">Характер груза</label>
                 </div> 
                 <div className="input-field col s3 m3">
                     <input 
@@ -330,7 +330,7 @@ export const CargoPage = () => {
             <div className="row center">
                 <div className="card-action ">
                     <button 
-                    className="waves-effect waves-light btn white-text #6d4c41 brown darken-3"
+                    className="waves-effect waves-light btn white-text #c62828 red darken-1"
                     onClick={addHandler}
                     disabled={loading}
                     >

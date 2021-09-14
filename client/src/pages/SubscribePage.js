@@ -43,7 +43,7 @@ export const SubscribePage = () => {
             <div className="container_subscribe"><span>Подписка Dogrooz777</span></div>
             <span></span>
            <a
-            class="waves-effect waves-light btn white-text #6d4c41 brown darken-3"
+            class="waves-effect waves-light btn white-text #c62828 red darken-1"
             onClick={addHandler}
             >Купить подписку</a>
         </div>

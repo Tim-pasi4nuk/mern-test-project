@@ -39,8 +39,12 @@ export const Navbar = () => {
 
         <>
          <nav> 
-            <div className="nav-wrapper #6d4c41 brown darken-1 " >
-                <span className="brand-logo" style={{padding:'0 2rem'}}>Лого</span>
+            <div className="nav-wrapper #c62828 red darken-3" >
+                <img src="logotruck.jpg" style={{
+                                        height: '100%',
+                                        width: 'auto',
+                                       
+                                    }}/>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     {!sub && <li><NavLink to ="/SubscribePage">Купить подписку</NavLink></li>}
                     <li><NavLink className="sidenav-close" to ="/search">Поиск</NavLink></li>
@@ -53,9 +57,13 @@ export const Navbar = () => {
             </div>
          </nav>
 
-        <ul id="slide-out" className="sidenav #6d4c41 brown white-text darken-1">
-            <li><span className="brand-logo" style={{padding:'0 2rem'}}>Лого</span></li>
-            {!sub && <li><NavLink className="sidenav-close white-text" to ="/SubscribePage">Купить подписку</NavLink></li>}
+        <ul id="slide-out" className="sidenav #c62828 red darken-3 white-text">
+            <li><img src="logotruck.jpg" style={{
+                                        height: '100%',
+                                        width: '100%',
+                                       
+                                    }}/></li>
+            {/* {!sub && <li><NavLink className="sidenav-close white-text" to ="/SubscribePage">Купить подписку</NavLink></li>} */}
             <li><NavLink className="sidenav-close white-text" to ="/search"><i className="material-icons white-text">search</i>Поиск</NavLink></li>
             <li><NavLink className="sidenav-close white-text" to ="/cargo"><i className="material-icons white-text">add_to_queue</i>Создать груз</NavLink></li>
             <li><NavLink className="sidenav-close white-text" to ="/vehile"><i className="material-icons white-text">add_to_queue</i>Создать транспорт</NavLink></li>

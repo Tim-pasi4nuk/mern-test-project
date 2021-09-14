@@ -26,10 +26,10 @@ export const AdList = ({ad}) => {
     }
 
     useEffect(()=>{
-        ad.reverse()
+        
         checkSub()
         setPage(ad.lenght)
-    },[checkSub])
+    },[])
 
     useEffect(() => {
         message(error)
@@ -46,7 +46,7 @@ export const AdList = ({ad}) => {
         return(
         <>
         <div className="row"></div>
-           {ad.map((ad, index) => {
+           {ad.reverse().map((ad, index) => {
                
             //    var 
             //     createtime = new Date(ad.dateCreate),
@@ -83,16 +83,16 @@ export const AdList = ({ad}) => {
             //     message += ', сейчас ' + hour + ':' + minute + ':' + second;
 
                 return(
-                    
                 <div className="row" style={{border:'1px solid ', borderRadius:'10px', padding:'1rem 0'}}>
-                    <div className="row container " ></div>
-                    <div className="container__inner">
-                        <div className="col s12">
+                        {/* <div className="col s12">
                             <div className="col s6 container " >
                                 <h6><i className="material-icons">access_time</i>  {new Date(ad.dateCreate).toLocaleDateString().slice(0,5)}</h6>
                             </div>
+                        </div> */}
+                        <div className="col s12">
+                            <span><b>{ad.regionFrom} - {ad.regionTo}</b></span>
                         </div>
-                        <div className="col s12 container" >
+                        <div className="col s12" >
                             <div className="col s6" >
                                 <h6><i className="material-icons">date_range</i>  {new Date(ad.dateFrom).toLocaleDateString().slice(0,5)} - {new Date(ad.dateTo).toLocaleDateString().slice(0,5)}</h6>
                             </div>
@@ -108,37 +108,30 @@ export const AdList = ({ad}) => {
                                 <h6>{ad.typeCar}</h6>
                             </div>
                         </div>
-                        <div className="col s12 container" >
-                            <div className="col s4 container" >
+                        <div className="col s12" >
+                            <div className="col" >
                                 <h6><i className="material-icons">fitness_center</i>  {ad.capacity} т.</h6>
                             </div> 
-                            <div className="col s4" >
+                            <div className="col" >
                                 <h6><i className="material-icons">zoom_out_map</i>  {ad.obem}м<sup>3</sup></h6>
                             </div>
+                            <div><h6>{ad.about}</h6></div>
                             </div>
-                        <div className="row">
-                            <div className="col s12" >
-                            <thead><tr><th>{ad.regionFrom}</th><th>-</th><th>{ad.regionTo}</th></tr></thead>
-                            </div>
-                            
-                        </div>
-                        
-
-                        {sub && <div className="row"> 
+                        {/* {sub && <div className="row">  */}
                            <div className="col s12" >
-                                <h6>{ad.about}</h6>
+                                
                             </div>
-                            <div className="col s5" >
+                            <div className="col" >
                                 <h6>{ ad.phone }</h6>
                             </div>
-                            <div className="col s3" >
-                                <h6>{ad.email}</h6>
+                            <div className="col green-text" >
+                                <h6><b>{ad.value} {ad.valuta}</b></h6>
                             </div>
-                            <div className="col s12 green-text" >
-                            <h6><b>{ad.value} {ad.valuta}</b></h6>
-                        </div>
-                        </div>}
-                        {!sub && <div className="row center" style={{borderTop:'1px solid'}}> 
+                            {/* <div className="col s12" >
+                            <h6>{ad.email}</h6>
+                        </div> */}
+                        {/* </div>} */}
+                        {/* {!sub && <div className="row center" style={{borderTop:'1px solid'}}> 
                         <a 
                         style={{marginTop:'10px'}}
                         class="waves-effect waves-light btn white-text #6d4c41 brown darken-3"
@@ -146,9 +139,7 @@ export const AdList = ({ad}) => {
                         >
                         Посмотреть информацию</a>
                         </div>
-                        }
-                    </div>
-                
+                        } */}
                 </div>
                 )
                 })}

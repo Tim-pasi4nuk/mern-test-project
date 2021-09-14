@@ -140,12 +140,13 @@ export const SearchPage = () => {
                             
                         </div> 
                     </div> 
-                
-                <a
-                className="waves-effect waves-light btn white-text #6d4c41 brown darken-3"
-                onClick={addHandler}
-                >
-                Искать</a>
+                <div className="row s12">
+                    <a
+                    className="s12 waves-effect waves-light btn white-text #c62828 red darken-1"
+                    onClick={addHandler}
+                    >
+                    Искать</a>
+                </div>
                 {!loading && search && <AdList ad={ads}/>}
             </div>
         </form>

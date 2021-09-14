@@ -325,7 +325,7 @@ export const VehilePage = () => {
         <div className="row center">
             <div className="card-action ">
                 <button 
-                className="btn white-text yellow darken-1"
+                className="btn white-text #c62828 red darken-1"
                 onClick={addHandler}
                 disabled={loading}
                 >

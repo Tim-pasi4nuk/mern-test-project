@@ -108,7 +108,7 @@ export const CabinetPage = () => {
             <div>
                 <a 
                 style={{marginTop:'10px'}}
-                class="waves-effect waves-light btn white-text #6d4c41 brown darken-3"
+                class="waves-effect waves-light btn white-text #c62828 red darken-1"
                 onClick={addHandlerCargo}
                 >
                 Посмотреть мои грузы</a>
@@ -116,7 +116,7 @@ export const CabinetPage = () => {
             <div>
                 <a 
                 style={{marginTop:'10px'}}
-                class="waves-effect waves-light btn white-text #6d4c41 brown darken-3"
+                class="waves-effect waves-light btn white-text #c62828 red darken-1"
                 onClick={addHandlerVehile}
                 >
                 Посмотреть мой транспорт</a>

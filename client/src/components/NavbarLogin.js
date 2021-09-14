@@ -16,8 +16,12 @@ export const NavbarLogin = () => {
     return (
         <>
          <nav> 
-            <div className="nav-wrapper #6d4c41 brown darken-1 white-text" >
-                <span className="brand-logo" style={{padding:'0 2rem'}}>Лого</span>
+            <div className="nav-wrapper #c62828 red darken-3 white-text" >
+            <img src="logotruck.jpg" style={{
+                                        height: '100%',
+                                        width: 'auto',
+                                       
+                                    }}/>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                 <li><NavLink className="sidenav-close" to ="/loginCreate" >Создать объявление</NavLink></li>
                 <li><NavLink className="sidenav-close" to ="/search">Поиск</NavLink></li>
@@ -27,8 +31,12 @@ export const NavbarLogin = () => {
             </div>
          </nav>
          
-            <ul id="slide-out" className="sidenav #6d4c41 brown darken-1 ">
-                    <li><span className="brand-logo" style={{padding:'0 2rem'}}>Лого</span></li>
+            <ul id="slide-out" className="sidenav #c62828 red darken-3 darken-1 ">
+                    <li><img src="logotruck.jpg" style={{
+                                        height: '100%',
+                                        width: '100%',
+                                       
+                                    }}/></li>
                     <li><NavLink className="sidenav-close white-text" to ="/search"><i      className="material-icons white-text">search</i>Поиск</NavLink></li>
                     <li><NavLink className="sidenav-close white-text" to ="/loginCreate"><i className="material-icons white-text">add_to_queue</i>Создать объявление</NavLink></li>
                     <li><NavLink className="sidenav-close white-text" to ="/login"><i       className="material-icons white-text">person</i>Войти</NavLink></li>

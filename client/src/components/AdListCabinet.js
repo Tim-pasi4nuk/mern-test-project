@@ -50,76 +50,49 @@ export const AdListCabinet = ({ad}) => {
         <div className="row"></div>
            {ad.map((ad, index) => {
                 return(
-                <div className="row" style={{border:'1px solid ', borderRadius:'10px'}}>
-                    <div className="row"></div>
-                    <div className="container__inner">
-                        <div className="row">
-                            <div className="col s3" >
-                                <h6>Дата создания: {new Date(ad.dateCreate).toLocaleDateString()}</h6>
+                    <div className="row" style={{border:'1px solid ', borderRadius:'10px', padding:'1rem 0'}}>
+                          
+                            <div className="col s12">
+                                <span><b>{ad.regionFrom} - {ad.regionTo}</b></span>
                             </div>
-                            <div className="col s3" >
-                                <h6>Тип:{ad.typeCar}</h6>
+                            <div className="col s12" >
+                                <div className="col s6" >
+                                    <h6><i className="material-icons">date_range</i>  {new Date(ad.dateFrom).toLocaleDateString().slice(0,5)} - {new Date(ad.dateTo).toLocaleDateString().slice(0,5)}</h6>
+                                </div>
+                                <div className="col s6" >
+                                    <div className="col s3" style={{
+                                        width: '50px',
+                                        height: '30px'}}>
+                                        <img src="truck.png" style={{
+                                            height: '100%',
+                                            width: 'auto',
+                                        }}/>
+                                    </div>
+                                    <h6>{ad.typeCar}</h6>
+                                </div>
                             </div>
-                            <div className="col s3" >
-                                <h6>Вес: {ad.capacity}</h6>
-                            </div>
-                            <div className="col s3" >
-                                <h6>Объём: {ad.obem}</h6>
-                            </div>
-                        </div>
-                        <div className="row" style={{borderTop:'1px solid'}}>
-                            <div className="col s3" >
-                                <h6>Откуда {ad.regionFrom}</h6>
-                            </div>
-                            <div className="col s3" >
-                                <h6>Куда {ad.regionTo}</h6>
-                            </div>
-                            <div className="col s3">
-                            </div>
-                            <div className="col s3" >
-                                <h6>Цена {ad.value} {ad.valuta}</h6>
-                            </div>
-                        </div>
-                         <div className="col s3" >
-                                <h6>{ad.about}</h6>
-                            </div>
-                        {sub && <div className="row" style={{borderTop:'1px solid'}}> 
-                           
-                            <div className="col s3" >
-                                <h6>{ ad.phone }</h6>
-                            </div>
-                            <div className="col s3" >
-                                <h6>{ad.email}</h6>
-                            </div>
-                            <div className="col s3">
-                                <h6>{ad.obem}</h6>
-                            </div>
-                        </div>}
-                        {!sub && <div className="row center" style={{borderTop:'1px solid'}}> 
-                        <a 
-                        style={{marginTop:'10px'}}
-                        class="waves-effect waves-light btn white-text #6d4c41 brown darken-3"
-                        onClick={addHandler}
-                        >
-                        Посмотреть информацию</a>
-                        </div>
-                        }
+                            <div className="col s12" >
+                                <div className="col" >
+                                    <h6><i className="material-icons">fitness_center</i>  {ad.capacity} т.</h6>
+                                </div> 
+                                <div className="col" >
+                                    <h6><i className="material-icons">zoom_out_map</i>  {ad.obem}м<sup>3</sup></h6>
+                                </div>
+                                <div><h6>{ad.about}</h6></div>
+                                </div>
+                               <div className="col s12" >
+                                    
+                                </div>
+                                <div className="col" >
+                                    <h6>{ ad.phone }</h6>
+                                </div>
+                                <div className="col green-text" >
+                                    <h6><b>{ad.value} {ad.valuta}</b></h6>
+                                </div>
                     </div>
-                </div>
-        
-                )
-                })}
-               
-                {/* <ul class="pagination">  
-                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                {ad.slice([startIndex], [endIndex]).map((cargo, index) => {
-                    <>
-                    <li class="active"><a href="#!">1</a></li>
-                    <li class="waves-effect"><a href="#!" onClick={nextPage()}>index</a></li>
-                    </>})}
-            <li class="waves-effect"><a href="#!" onClick={nextPage()}><i class="material-icons">chevron_right</i></a></li>
-            </ul> */}
-                  </>
-          
+                    )
+                    })}
+                     
+                     </>
         )
 }
