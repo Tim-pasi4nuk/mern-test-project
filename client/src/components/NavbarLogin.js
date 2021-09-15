@@ -17,7 +17,7 @@ export const NavbarLogin = () => {
         <>
          <nav> 
             <div className="nav-wrapper #c62828 red darken-3 white-text" >
-            <img src="logotruck.jpg" style={{
+            <img src="logotruck.png" style={{
                                         height: '100%',
                                         width: 'auto',
                                        
@@ -32,7 +32,7 @@ export const NavbarLogin = () => {
          </nav>
          
             <ul id="slide-out" className="sidenav #c62828 red darken-3 darken-1 ">
-                    <li><img src="logotruck.jpg" style={{
+                    <li><img src="logotruck.png" style={{
                                         height: '100%',
                                         width: '100%',
                                        

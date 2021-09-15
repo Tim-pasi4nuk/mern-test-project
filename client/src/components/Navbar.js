@@ -40,7 +40,7 @@ export const Navbar = () => {
         <>
          <nav> 
             <div className="nav-wrapper #c62828 red darken-3" >
-                <img src="logotruck.jpg" style={{
+                <img src="logotruck.png" style={{
                                         height: '100%',
                                         width: 'auto',
                                        
@@ -58,7 +58,7 @@ export const Navbar = () => {
          </nav>
 
         <ul id="slide-out" className="sidenav #c62828 red darken-3 white-text">
-            <li><img src="logotruck.jpg" style={{
+            <li><img src="logotruck.png" style={{
                                         height: '100%',
                                         width: '100%',
                                        
