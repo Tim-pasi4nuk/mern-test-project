@@ -10,7 +10,7 @@ const schema = new Schema({
     cityFrom: {type: String},
     cityTo:{type: String},
     codeCargo:{type:String},
-    typeCar:{type:String, default:'Не указано'},
+    typeCar:[{type:String, default:'Не указано'}],
     amountCar:{type:Number,default:'1'},
     link:{type:String},
     value:{type:Number,default:'Не указано'},

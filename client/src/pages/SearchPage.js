@@ -83,7 +83,7 @@ export const SearchPage = () => {
             console.log({...form})
                 const list = await request('/api/search', 'POST', {...form}, {
             })
-            setAds(list)
+            setAds(list.reverse())
             setSearch(true)
         }
          catch (e){}
@@ -94,11 +94,13 @@ export const SearchPage = () => {
     }
 
     return(
-        <form onSubmit ="">
+        <form>
             <div className="row">
                 <h1>Поиск</h1>
-                <div className="row">
-                    <div className="row" >
+                    <div className="card #ffebee red lighten-5">
+                        <div className="card-content">
+                             <div className="row">
+                            <div className="row" >
                         <div className="input-field col s12 m5">
                         <select
                             className="regionFrom"
@@ -110,7 +112,7 @@ export const SearchPage = () => {
                             >
                                 <SelectOptionCity></SelectOptionCity>
                             </select>
-                            <label htmlFor="regionFrom">Область отгрузки</label>
+                            <label htmlFor="regionFrom" className="black-text bolt">ОТКУДА</label>
                         </div>
                         
                         <div className="input-field col s12 m5">
@@ -124,7 +126,7 @@ export const SearchPage = () => {
                             >
                                 <SelectOptionCity></SelectOptionCity>
                             </select>
-                            <label htmlFor="regionTo">Область отгрузки</label>
+                            <label htmlFor="regionTo" className="black-text bolt">КУДА</label>
                         </div>
                         <div className="input-field col s12 m2">
                             <select 
@@ -135,20 +137,24 @@ export const SearchPage = () => {
                                 <option value="vehile" selected>Транспорт</option>
                                 <option value="cargo">Груз</option>
                             </select>
-                            <label>Груз или транспорт</label>
+                            <label  htmlFor="typeList" className="black-text bolt"></label>
                         </div>
                             
                         </div> 
                     </div> 
-                <div className="row s12">
+                <div className="row s12 center">
                     <a
                     className="s12 waves-effect waves-light btn white-text #c62828 red darken-1"
                     onClick={addHandler}
                     >
                     Искать</a>
+                </div> 
                 </div>
-                {!loading && search && <AdList ad={ads}/>}
             </div>
+                {!loading && search && <AdList ad={ads}/>}
+           
+        </div>
         </form>
+
     )
 }

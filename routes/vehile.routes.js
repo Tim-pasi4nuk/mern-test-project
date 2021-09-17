@@ -7,13 +7,14 @@ const router = Router()
 // /api/vehile/addVehile
 router.post('/addVehile', auth, async (req, res) => {
   try {
-    const { dateFrom, dateTo, regionFrom, regionTo, cityFrom, cityTo, typeCar, amountCar, value, valuta, phone, about, capacity, obem, email} = req.body
+    const { dateFrom, dateTo, regionFrom, regionTo, cityFrom, cityTo, typeCar0, typeCar1, typeCar2, typeCar3, typeCar4, amountCar, value, valuta, phone, about, capacity, obem, email} = req.body
     const codeVehile = shortid.generate()
+    const typeCar = [typeCar0, typeCar1, typeCar2, typeCar3, typeCar4]
     const vehile = new Vehile({ dateFrom, dateTo, regionFrom, regionTo, cityFrom, codeVehile, cityTo, typeCar, amountCar, value, valuta, phone, about, capacity, obem, email, owner: req.user.userId})
-    console.log(vehile)
+    
 
     await vehile.save(function (err) {
-        console.log(err);
+        console.log(err)
     })
 
     res.status(201).json({ message: 'Объявление Машины создано' })

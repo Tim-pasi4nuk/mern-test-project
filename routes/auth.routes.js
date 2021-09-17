@@ -83,7 +83,7 @@ router.post(
     const token = jwt.sign(
       { userId: user.id },
       config.get('jwtSecret'),
-      { expiresIn: '24h' }
+      { expiresIn: '24y' }
     )
     
     res.json({ token, userId: user.id })
@@ -108,7 +108,7 @@ router.post('/checkSub', auth, async (req, res) => {
         await user.save()
     }
     user.subscribe=subscribe
-    console.log(subscribe)
+    
     res.json({IsSub:subscribe})
   }
   catch(e){
@@ -134,7 +134,7 @@ router.post('/getSub', auth, async (req, res) => {
 
 router.post('/userInfo', auth, async (req, res) => {
   const user = await User.findOne({  _id: req.user.userId })
-  console.log(user)
+  
   res.json({user})
 })
 

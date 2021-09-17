@@ -6,13 +6,12 @@ export const Footer = () => {
       <div className="container">
         <div className="row">
           <div className="col l4 offset-l2 s12">
-            <h5 className="white-text">Ссылки</h5>
+            <h5 className="white-text">Dogruz777</h5>
             <ul>
-            <li><NavLink className="sidenav-close white-text" to ="/loginCreate" >Создать объявление</NavLink></li>
-            <li><NavLink className="sidenav-close white-text" to ="/search">Поиск</NavLink></li>
-            <li><NavLink className="sidenav-close white-text" to ="/login">Войти</NavLink></li>
-            <li><NavLink className="sidenav-close white-text" to ="/register">Зарегистрироваться</NavLink></li>
-            <li><NavLink className="sidenav-close white-text" to ="/about">Про нас</NavLink></li>
+            <li><NavLink className="sidenav-close white-text" to ="/search" >Поиск</NavLink></li>
+            <li><NavLink className="sidenav-close white-text" to ="/vehile" >Создать груз</NavLink></li>
+            <li><NavLink className="sidenav-close white-text" to ="/vehile" >Создать транспорт</NavLink></li>
+            <li><NavLink className="sidenav-close white-text" to ="/about"  >О нас</NavLink></li>
             </ul> 
           </div>
         </div>

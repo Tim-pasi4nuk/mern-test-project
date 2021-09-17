@@ -14,7 +14,7 @@ export const CargoPage = () => {
     const today = new Date()
     const [userInfo, setUserInfo] = useState({email:'', links:[], subscribe:'', dateSubscribe:'', phone:'', userName:''})
     const  [form, setForm] = useState({
-        dateFrom:today.toISOString().substring(0, 10), dateTo:today.toISOString().substring(0, 10), regionFrom:'Украина', regionTo:'Украина', cityFrom:'', cityTo:'', typeItem:'', typeCar:'', amountCar:'', value:'', valuta:'', phone:'', email:'', userName:'', capacity:'', obem:'', about:' ', aboutHeigth:' ', aboutWidth:' ', aboutDepth:' '
+        dateFrom:today.toISOString().substring(0, 10), dateTo:today.toISOString().substring(0, 10), regionFrom:'Украина', regionTo:'Украина', cityFrom:'', cityTo:'', typeItem:'', type0:'', type1:'',type2:'',type3:'', type4:'', amountCar:'', value:'', valuta:'', phone:'', email:'', userName:'', capacity:'', obem:'', about:' ', aboutHeigth:' ', aboutWidth:' ', aboutDepth:' '
     })
 
     
@@ -42,7 +42,6 @@ export const CargoPage = () => {
             const user = await request('/api/auth/userInfo', 'POST', null, {
                 Authorization: `Bearer ${auth.token}`
             })
-            console.log(user)
             setUserInfo(user.user)
 
         }
@@ -53,13 +52,13 @@ export const CargoPage = () => {
         form.email=userInfo.email
         form.phone=userInfo.phone
         form.userName=userInfo.userName
-        form.about = 'Шир:' + form.aboutWidth +' Выс:' + form.aboutHeigth +' Глуб:'+ form.aboutDepth
-        console.log(form)
         setForm ({...form, [even.target.name]: even.target.value})
     }
 
-    const addHandler = async () => {   
-
+    const addHandler = async () => {  
+       
+        form.about = 'Шир:' + form.aboutWidth +' Выс:' + form.aboutHeigth +' Глуб:'+ form.aboutDepth
+        console.log(form)
         try {
             const data = await request('/api/cargo/generate', 'POST', {...form}, {
                 Authorization: `Bearer ${auth.token}`
@@ -77,8 +76,10 @@ export const CargoPage = () => {
     <div className="row">
         {/* <form className="col s1"></form> */}
         {/* ДАТА И ГОРОД */}
-        <div className="row s12 m12"><h3>Добавление заявки на перевозку груза</h3></div>
-        <form className="col s11 m11 center" style={{border:'2px solid'}} >
+        <div className="row">
+            <h3>Добавление заявки на перевозку груза</h3>
+        </div>
+        <form className="col s12 m11 center" style={{border:'2px solid'}} onSubmit="return false" >
             <div className="row" ></div>
             <div className="row" >
                 <div className="input-field col s6 m6">
@@ -112,7 +113,7 @@ export const CargoPage = () => {
             <div className="row" >
                 <div className="input-field col s12 m6">
                 <select
-                    placeholder="Погрузка в"
+                    placeholder=""
                     id="regionFrom" 
                     type="text" 
                     name="regionFrom"
@@ -122,7 +123,18 @@ export const CargoPage = () => {
                     >
                         <SelectOptionCity></SelectOptionCity>
                     </select>
-                    <label htmlFor="regionFrom">Нас. пункт погрузки</label>
+                    <label htmlFor="regionFrom">ОБЛАСТЬ ОТБЫТИЯ</label>
+                </div> 
+                <div className="input-field col s12 m6">
+                    <input 
+                    id="cityFrom" 
+                    type="text" 
+                    name="cityFrom"
+                    className="validate" 
+                    value={form.cityFrom}
+                    onChange={changeHandler} 
+                    />
+                    <label htmlFor="cityFrom">ГОРОД</label>
                 </div>
                 <div className="input-field col s12 m6">
                 <select
@@ -136,9 +148,22 @@ export const CargoPage = () => {
                     >
                         <SelectOptionCity></SelectOptionCity>
                     </select>
-                    <label htmlFor="regionTo">Нас. пункт вигрузки</label>
+                    <label htmlFor="regionTo">ОБЛАСТЬ ПРИЕЗДА</label>
+                </div>
+               
+                <div className="input-field col s12 m6">
+                    <input 
+                    id="cityTo" 
+                    type="text" 
+                    name="cityTo"
+                    className="validate" 
+                    value={form.cityTo}
+                    onChange={changeHandler} 
+                    />
+                    <label htmlFor="cityTo">ГОРОД</label>
                 </div>
             </div> 
+            
            
             {/* ГРУЗ ВЕС ОБ'ЄМ */}
             <div className="row" style={{borderTop:'1px solid'}} >
@@ -233,17 +258,69 @@ export const CargoPage = () => {
                 <div className="input-field col s12 m3">
                     
                     <select 
-                    class="typeCar" 
-                    id="typeCar" 
-                    name="typeCar" 
+                    class="typeCar0" 
+                    id="typeCar0" 
+                    name="typeCar0" 
                     onChange={changeHandler} 
-                    value={form.typeCar}
+                    value={form.type0}
                     >
                         <SelectOptionTypeVehile />
                     </select>
-                    <label htmlFor="typeCar">Тип транспорта</label>
+                    <label htmlFor="typeCar0">Тип транспорта</label>
                 </div> 
-                <div className="input-field col s12 m2">
+                <div className="input-field col s12 m3">
+                    
+                    <select 
+                    class="typeCar1" 
+                    id="typeCar1" 
+                    name="typeCar1" 
+                    onChange={changeHandler} 
+                    value={form.type1}
+                    >
+                        <SelectOptionTypeVehile />
+                    </select>
+                    <label htmlFor="typeCar1">Тип транспорта</label>
+                </div> 
+                <div className="input-field col s12 m3">
+                    
+                    <select 
+                    class="typeCar2" 
+                    id="typeCar2" 
+                    name="typeCar2" 
+                    onChange={changeHandler} 
+                    value={form.type2}
+                    >
+                        <SelectOptionTypeVehile />
+                    </select>
+                    <label htmlFor="typeCar2">Тип транспорта</label>
+                </div> 
+                <div className="input-field col s12 m3">
+                    
+                    <select 
+                    class="typeCar3" 
+                    id="typeCar3" 
+                    name="typeCar3" 
+                    onChange={changeHandler} 
+                    value={form.type3}
+                    >
+                        <SelectOptionTypeVehile />
+                    </select>
+                    <label htmlFor="typeCar3">Тип транспорта</label>
+                </div> 
+                <div className="input-field col s12 m3">
+                    
+                    <select 
+                    class="typeCar4" 
+                    id="typeCar4" 
+                    name="typeCar4" 
+                    onChange={changeHandler} 
+                    value={form.type4}
+                    >
+                        <SelectOptionTypeVehile />
+                    </select>
+                    <label htmlFor="typeCar4">Тип транспорта</label>
+                </div> 
+                {/* <div className="input-field col s12 m2">
                     <input 
                     placeholder="2"
                     id="amountCar" 
@@ -255,8 +332,8 @@ export const CargoPage = () => {
                     min="1"
                     />
                     <label htmlFor="amounCar">Количество машин</label>
-                </div> 
-                <div className="input-field col s6 offset-m3 m2">
+                </div>  */}
+                <div className="input-field col s6 offset-m3 m3">
                     <input 
                     placeholder="Цена"
                     id="value" 
@@ -270,7 +347,7 @@ export const CargoPage = () => {
                     <label htmlFor="value">Цена</label>
                 </div>
                 
-                <div className="input-field col s6 m2">
+                <div className="input-field col s6 m3">
                     <select 
                     class="valuta" 
                     id="valuta" 

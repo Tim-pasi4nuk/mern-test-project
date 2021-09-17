@@ -10,19 +10,28 @@ export const VehilePage = () => {
     const auth = useContext(AuthContext)
     const message = useMessage()
     const {loading, request, error, clearError} = useHttp()
-    const today = new Date();
-      
+    const today = new Date()
+    const mindata = Date.now()
+    const [userInfo, setUserInfo] = useState({email:'', links:[], subscribe:'', dateSubscribe:'', phone:'', userName:''})
     const  [form, setForm] = useState({
-        dateFrom:today.toISOString().substring(0, 10), dateTo:today.toISOString().substring(0, 10), regionFrom:'Украина', regionTo:'Украина', cityFrom:'', cityTo:'', codeVehile:'', typeVehile:'', amountCar:'', value:'', valuta:'', phone:'', email:'', about:'', capacity:'', userName:''
+        dateFrom:today.toISOString().substring(0, 10), dateTo:today.toISOString().substring(0, 10), regionFrom:'Украина', regionTo:'Украина', cityFrom:'', cityTo:'', codeVehile:'', typeCar:'', type0:'', type1:'',type2:'',type3:'', type4:'', amountCar:'', value:'', valuta:'', phone:'', email:'', about:'', capacity:'', userName:'', aboutHeigth:' ', aboutWidth:' ',  obem:'', aboutDepth:' '
     })
 
-    
+    const addUserInfo = async () =>{
+        try{
+            const user = await request('/api/auth/userInfo', 'POST', null, {
+                Authorization: `Bearer ${auth.token}`
+            })
+            console.log(user)
+            setUserInfo(user.user)
+
+        }
+        catch(e){}
+    }
+
     useEffect(() => {
-        var phoneMask = IMask(
-            document.getElementById('phone'), {
-              mask: '+{38}(000)000-00-00'
-            });
         message(error)
+        addUserInfo()
         clearError()
     }, [error, message, clearError])
 
@@ -33,17 +42,17 @@ export const VehilePage = () => {
         var elems = document.querySelectorAll('select')
         window.M.FormSelect.init(elems, '')
 
-        var elemsAuto = document.querySelectorAll('.autocomplete')
-        window.M.Autocomplete.init(elemsAuto,'')
-        var data = {
-        "Apple": null,
-        "Microsoft": null,
-        "Google": 'https://placehold.it/250x250'
-        }
-        elemsAuto = document.querySelectorAll('.autocomplete')
+        // var elemsAuto = document.querySelectorAll('.autocomplete')
+        // window.M.Autocomplete.init(elemsAuto,'')
+        // var data = {
+        // "Apple": null,
+        // "Microsoft": null,
+        // "Google": 'https://placehold.it/250x250'
+        // }
+        // elemsAuto = document.querySelectorAll('.autocomplete')
         
-        var instances = window.M.Autocomplete.init(elemsAuto,data)
-        console.log(instances)
+        // var instances = window.M.Autocomplete.init(elemsAuto,data)
+        // console.log(instances)
 
         // const instance = window.M.Autocomplete.getInstance(elemsAuto)
         
@@ -57,13 +66,15 @@ export const VehilePage = () => {
     }, [])
 
     const changeHandler = even => {
-            form.about = 'Ширина:' + form.aboutWidth +' Висота:' + form.aboutHeigth +' Глубина:'+ form.aboutDepth
-
-            setForm ({...form, [even.target.name]: even.target.value})
+        form.email=userInfo.email
+        form.phone=userInfo.phone
+        form.userName=userInfo.userName
+        setForm ({...form, [even.target.name]: even.target.value})
         
     }
 
     const addHandler = async () => {
+        form.about = 'Ширина:' + form.aboutWidth +' Висота:' + form.aboutHeigth +' Глубина:'+ form.aboutDepth
         try {
             console.log({...form})
             const data = await request('/api/vehile/addVehile', 'POST', {...form}, {
@@ -76,87 +87,165 @@ export const VehilePage = () => {
 
 
     return(
-    <div className="row">
+    <div className="row" >
     {/* <form className="col s1"></form> */}
     {/* ДАТА И ГОРОД */}
     <div className="row s12 m12"><h3>Добавление заявки на транспорт</h3></div>
     <form className="col s11 m11 center" style={{border:'2px solid'}} >
         <div className="row" ></div>
         <div className="row" >
-            <div className="input-field col s6 m6">
-                <input 
-                type="date" 
-                id="dateFrom" 
-                name="dateFrom" 
-                min = {Date.now()} 
-                max="2030-01-01" 
-                value={form.dateFrom}
-                onChange={changeHandler} 
-                />
-                <label htmlFor="dateFrom">Погрузка с</label>
+                <div className="input-field col s6 m6">
+                    <input 
+                    type="date" 
+                    id="dateFrom" 
+                    name="dateFrom" 
+                    min = {mindata} 
+                    max="2030-01-01" 
+                   
+                    value={form.dateFrom}
+                    onChange={changeHandler} 
+                    />
+                    <label htmlFor="dateFrom"  className="black-text bolt">ПОГРУЗКА C</label>
+                </div>
+                <div className="col s1 m1"></div>
+                <div className="input-field col s6 m6">
+                
+                    <input 
+                    type="date" 
+                    id="dateTo" 
+                    name="dateTo" 
+                    min={mindata} 
+                    max="2030-01-01" 
+                    value={form.dateTo}
+                    onChange={changeHandler} 
+                    />
+                    <label htmlFor="dateTo"  className="black-text bolt">ПОГРУЗКА ПО</label>
+                </div>
             </div>
+            <div className="row" >
+                <div className="input-field col s12 m6">
+                <select
+                    placeholder=""
+                    id="regionFrom" 
+                    type="text" 
+                    name="regionFrom"
+                    className="autocomplete" 
+                    value={form.regionFrom}
+                    onChange={changeHandler}  
+                    >
+                        <SelectOptionCity></SelectOptionCity>
+                    </select>
+                    <label htmlFor="regionFrom"  className="black-text bolt">ОБЛАСТЬ ОТБЫТИЯ</label>
+                </div> 
+                <div className="input-field col s12 m6">
+                    <input 
+                    id="cityFrom" 
+                    type="text" 
+                    name="cityFrom"
+                    className="validate" 
+                    value={form.cityFrom}
+                    onChange={changeHandler} 
+                    />
+                    <label htmlFor="cityFrom"  className="black-text bolt">ГОРОД</label>
+                </div>
+                <div className="input-field col s12 m6">
+                <select
+                    className="CityTo"
+                    id="regionTo" 
+                    type="text" 
+                    name="regionTo"
+                    className="autocomplete" 
+                    value={form.regionTo}
+                    onChange={changeHandler} 
+                    >
+                        <SelectOptionCity></SelectOptionCity>
+                    </select>
+                    <label htmlFor="regionTo"  className="black-text bolt">ОБЛАСТЬ ПРИЕЗДА</label>
+                </div>
+               
+                <div className="input-field col s12 m6">
+                    <input 
+                    id="cityTo" 
+                    type="text" 
+                    name="cityTo"
+                    className="validate" 
+                    value={form.cityTo}
+                    onChange={changeHandler} 
+                    />
+                    <label htmlFor="cityTo" className="black-text bolt">ГОРОД</label>
+                </div>
+            </div> 
             
-            <div className="input-field col s6 m6">
-            
-                <input 
-                type="date" 
-                name="dateTo" 
-                id="dateTo" 
-                min={Date.now()} 
-                max="2030-01-01" 
-                value={form.dateTo}
-                onChange={changeHandler} 
-                />
-                <label htmlFor="dateTo">Погрузка по</label>
-            </div>
-        </div>
-        <div className="row" >
-            <div className="input-field col s12 m6">
-            <select
-                placeholder="Погрузка в"
-                id="regionFrom" 
-                type="text" 
-                name="regionFrom"
-                className="autocomplete" 
-                value={form.regionFrom}
-                onChange={changeHandler}  
-                >
-                    <SelectOptionCity></SelectOptionCity>
-                </select>
-                <label htmlFor="regionFrom">Нас. пункт погрузки</label>
-            </div>
-            <div className="input-field col s12 m6">
-            <select
-                className="CityTo"
-                id="regionTo" 
-                type="text" 
-                name="regionTo"
-                className="autocomplete" 
-                value={form.regionTo}
-                onChange={changeHandler} 
-                >
-                    <SelectOptionCity></SelectOptionCity>
-                </select>
-                <label htmlFor="regionTo">Нас. пункт вигрузки</label>
-            </div>
-        </div> 
-           
 
         {/* ТИП ТРАНСПОРТА ВЕС ОБ'ЄМ */}
-        <div className="row" style={{borderTop:'1px solid'}} >
-        <div className="input-field col s6 m4">
-        <select 
-            className="typeVehile" 
-            id="typeVehile" 
-            name="typeVehile" 
-            onChange={changeHandler} 
-            value={form.typeVehile}
-            >
-            <SelectOptionTypeVehile />
-        </select>
-        <label htmlFor="typeVehile">Тип транспорта</label>
-        </div> 
-        <div className="input-field col s6 m2">
+        <div class="row" style={{borderTop:'1px solid'}} >
+               
+                <div className="input-field col s12 m3">
+                    
+                    <select 
+                    class="typeCar0" 
+                    id="typeCar0" 
+                    name="typeCar0" 
+                    onChange={changeHandler} 
+                    value={form.type0}
+                    >
+                        <SelectOptionTypeVehile />
+                    </select>
+                    <label htmlFor="typeCar0" className="black-text bolt">Тип транспорта</label>
+                </div> 
+                <div className="input-field col s12 m3">
+                    
+                    <select 
+                    class="typeCar1" 
+                    id="typeCar1" 
+                    name="typeCar1" 
+                    onChange={changeHandler} 
+                    value={form.type1}
+                    >
+                        <SelectOptionTypeVehile />
+                    </select>
+                    <label htmlFor="typeCar1" className="black-text bolt">Тип транспорта</label>
+                </div> 
+                <div className="input-field col s12 m3">
+                    
+                    <select 
+                    class="typeCar2" 
+                    id="typeCar2" 
+                    name="typeCar2" 
+                    onChange={changeHandler} 
+                    value={form.type2}
+                    >
+                        <SelectOptionTypeVehile />
+                    </select>
+                    <label htmlFor="typeCar2" className="black-text bolt">Тип транспорта</label>
+                </div> 
+                <div className="input-field col s12 m3">
+                    
+                    <select 
+                    class="typeCar3" 
+                    id="typeCar3" 
+                    name="typeCar3" 
+                    onChange={changeHandler} 
+                    value={form.type3}
+                    >
+                        <SelectOptionTypeVehile />
+                    </select>
+                    <label htmlFor="typeCar3" className="black-text bolt">Тип транспорта</label>
+                </div> 
+                <div className="input-field col s12 m3">
+                    
+                    <select 
+                    class="typeCar4" 
+                    id="typeCar4" 
+                    name="typeCar4" 
+                    onChange={changeHandler} 
+                    value={form.type4}
+                    >
+                        <SelectOptionTypeVehile />
+                    </select>
+                    <label htmlFor="typeCar4" className="black-text bolt">Тип транспорта</label>
+                </div> 
+                <div className="input-field col s6 m2">
                 <input 
                 placeholder="1"
                 id="amountCar" 
@@ -167,7 +256,7 @@ export const VehilePage = () => {
                 value={form.amountCar}
                 
                 />
-                <label htmlFor="amounCar">Количество машин</label>
+                <label htmlFor="amounCar" className="black-text bolt">Количество машин</label>
             </div>
 
             {/* ГАБАРИТЫ */}
@@ -180,7 +269,7 @@ export const VehilePage = () => {
                 value={form.aboutHeigth}
                 onChange={changeHandler} 
                 />
-                <label htmlFor="aboutHeight">Высота</label>
+                <label htmlFor="aboutHeight" className="black-text bolt">Высота</label>
             </div> 
             <div className="input-field col s4 m2">
                 <input 
@@ -192,7 +281,7 @@ export const VehilePage = () => {
                 onChange={changeHandler} 
                 
                 />
-                <label htmlFor="aboutWidth">Ширина</label>
+                <label htmlFor="aboutWidth" className="black-text bolt">Ширина</label>
             </div> 
             <div className="input-field col s4 m2">
                 <input 
@@ -204,7 +293,7 @@ export const VehilePage = () => {
                 onChange={changeHandler} 
                 
                 />
-                <label htmlFor="aboutDepth">Глубина</label>
+                <label htmlFor="aboutDepth" className="black-text bolt">Глубина</label>
             </div>
             {/* <div className="input-field col s2 m3" style={{marginLeft:'1%'}} >
                 <label>
@@ -240,7 +329,7 @@ export const VehilePage = () => {
                     onChange={changeHandler} 
                     
                     />
-                    <label htmlFor="capacity">Грузоподъёмность</label>
+                    <label htmlFor="capacity" className="black-text bolt">Грузоподъёмность</label>
                 </div> 
                 <div className="input-field col s6 m3">
                     <input 
@@ -253,7 +342,7 @@ export const VehilePage = () => {
                     onChange={changeHandler} 
                     
                     />
-                    <label htmlFor="obem">Полезный объём (м<sup>3</sup>)</label>
+                    <label htmlFor="obem" className="black-text bolt">Полезный объём (м<sup>3</sup>)</label>
                 </div>
             
             <div className="input-field col s6 offset-m2 m2">
@@ -267,7 +356,7 @@ export const VehilePage = () => {
                 value={form.value} 
                
                 />
-                <label htmlFor="value">Стоимость перевозки</label>
+                <label htmlFor="value" className="black-text bolt">Стоимость перевозки</label>
             </div>
             
             <div className="input-field col s6 m2">
@@ -281,10 +370,10 @@ export const VehilePage = () => {
                     <option value="Грн" selected>Грн</option>
                     <option value="Грн/км">Грн/км</option>
                 </select>
-            <label htmlFor="valuta">Грн/грн/км</label>
+            <label htmlFor="valuta" className="black-text bolt">Грн/грн/км</label>
             </div>
             </div>
-        <div className="row" style={{borderTop:'1px solid'}}>
+        {/* <div className="row" style={{borderTop:'1px solid'}}>
             <div className="input-field col s12 m3">
                 <input 
                 placeholder="Имя"
@@ -321,7 +410,7 @@ export const VehilePage = () => {
                 />
                 <label htmlFor="phone">Телефон</label>
             </div>
-        </div>       
+        </div>        */}
         <div className="row center">
             <div className="card-action ">
                 <button 

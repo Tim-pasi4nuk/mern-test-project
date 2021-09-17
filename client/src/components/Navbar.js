@@ -38,25 +38,26 @@ export const Navbar = () => {
     return (
 
         <>
-         <nav> 
-            <div className="nav-wrapper #c62828 red darken-3" >
-                <img src="logoTruck.png" style={{
-                                        height: '100%',
-                                        width: 'auto',
-                                       
-                                    }}/>
-                <ul id="nav-mobile" className="right hide-on-med-and-down">
-                    {!sub && <li><NavLink to ="/SubscribePage">Купить подписку</NavLink></li>}
-                    <li><NavLink className="sidenav-close" to ="/search">Поиск</NavLink></li>
-                    <li><NavLink className="sidenav-close" to ="/cargo">Создать груз</NavLink></li>
-                    <li><NavLink className="sidenav-close" to ="/vehile">Создать транспорт</NavLink></li>
-                    <li><NavLink className="sidenav-close" to ="/cabinet">Кабинет</NavLink></li>
-                    <li><a href="/" onClick={logoutHandler}>Выйти</a></li>
-                </ul><a href="#" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-                
-            </div>
-         </nav>
-
+        <div className="navbar-fixed">
+            <nav> 
+                <div className="nav-wrapper #c62828 red darken-3" >
+                    <img src="logoTruck.png" style={{
+                                            height: '100%',
+                                            width: 'auto',
+                                        
+                                        }}/>
+                    <ul id="nav-mobile" className="right hide-on-med-and-down">
+                        {!sub && <li><NavLink to ="/SubscribePage">Купить подписку</NavLink></li>}
+                        <li><NavLink className="sidenav-close" to ="/search">Поиск</NavLink></li>
+                        <li><NavLink className="sidenav-close" to ="/cargo">Создать груз</NavLink></li>
+                        <li><NavLink className="sidenav-close" to ="/vehile">Создать транспорт</NavLink></li>
+                        <li><NavLink className="sidenav-close" to ="/cabinet">Кабинет</NavLink></li>
+                        <li><a href="/" onClick={logoutHandler}>Выйти</a></li>
+                    </ul><a href="#" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+                    
+                </div>
+            </nav>
+        </div>
         <ul id="slide-out" className="sidenav #c62828 red darken-3 white-text">
             <li><img src="logoTruck.png" style={{
                                         height: '100%',

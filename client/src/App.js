@@ -7,6 +7,7 @@ import { Navbar } from './components/Navbar'
 import { NavbarLogin } from './components/NavbarLogin'
 import { Loader } from './components/Loader'
 import { Footer } from './components/Footer'
+import { FooterLogin } from './components/FooterLogin'
 import 'materialize-css'
 function App() {
   const {token, login, logout, userId, ready} = useAuth()
@@ -29,7 +30,10 @@ function App() {
             {routes}
           </div>
         </main>
-        <Footer></Footer>
+        
+        {isAuthenticated && <Footer />}
+        {!isAuthenticated && <FooterLogin />}
+        
       </Router>
     </AuthContext.Provider>
   )

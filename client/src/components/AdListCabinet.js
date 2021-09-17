@@ -4,6 +4,7 @@ import { useHttp } from '../hooks/http.hook'
 import { useMessage } from '../hooks/message.hook'
 import 'materialize-css'
 export const AdListCabinet = ({ad}) => {
+    
     const message = useMessage()
     const {request, error, clearError} = useHttp()
     const {token} = useContext(AuthContext)
@@ -29,6 +30,9 @@ export const AdListCabinet = ({ad}) => {
     }
 
     useEffect(()=>{
+       
+         var elems = document.querySelectorAll('select')
+        var instances = window.M.FormSelect.init(elems, '')
         checkSub()
         setPage(ad.lenght)
     },[checkSub])
@@ -48,51 +52,79 @@ export const AdListCabinet = ({ad}) => {
         return(
         <>
         <div className="row"></div>
-           {ad.map((ad, index) => {
-                return(
-                    <div className="row" style={{border:'1px solid ', borderRadius:'10px', padding:'1rem 0'}}>
-                          
-                            <div className="col s12">
-                                <span><b>{ad.regionFrom} - {ad.regionTo}</b></span>
-                            </div>
-                            <div className="col s12" >
-                                <div className="col s6" >
-                                    <h6><i className="material-icons">date_range</i>  {new Date(ad.dateFrom).toLocaleDateString().slice(0,5)} - {new Date(ad.dateTo).toLocaleDateString().slice(0,5)}</h6>
-                                </div>
-                                <div className="col s6" >
-                                    <div className="col s3" style={{
-                                        width: '50px',
-                                        height: '30px'}}>
-                                        <img src="truck.png" style={{
-                                            height: '100%',
-                                            width: 'auto',
-                                        }}/>
-                                    </div>
-                                    <h6>{ad.typeCar}</h6>
-                                </div>
-                            </div>
-                            <div className="col s12" >
-                                <div className="col" >
-                                    <h6><i className="material-icons">fitness_center</i>  {ad.capacity} т.</h6>
-                                </div> 
-                                <div className="col" >
-                                    <h6><i className="material-icons">zoom_out_map</i>  {ad.obem}м<sup>3</sup></h6>
-                                </div>
-                                <div><h6>{ad.about}</h6></div>
-                                </div>
-                               <div className="col s12" >
-                                    
-                                </div>
-                                <div className="col" >
-                                    <h6>{ ad.phone }</h6>
-                                </div>
-                                <div className="col green-text" >
-                                    <h6><b>{ad.value} {ad.valuta}</b></h6>
-                                </div>
+        {ad.map((ad, index) => {
+             console.log(ad.typeCar)
+            return(
+                <div className="row #c62828 red lighten-5 z-depth-1">
+                    <div className="col s12 center">
+                        <span><b>{ad.regionFrom} - {ad.regionTo}</b></span>
                     </div>
-                    )
-                    })}
-                     
-                     </>
+                    <div className="row s12" >
+                        <div className="col s5 m4" >
+                            <h6><i className="material-icons">date_range</i>  {new Date(ad.dateFrom).toLocaleDateString().slice(0,5)} - {new Date(ad.dateTo).toLocaleDateString().slice(0,5)}</h6>
+                        </div>
+                        <div class="col s6">
+                        <i class="material-icons">directions_bus</i>
+                        
+                                {/* <ul class="" 
+                                style={{
+                                    height:'10px',
+                                    owerflow:'scroll'
+                                 }}> */}
+                                {ad.typeCar.map((car, index) => {
+                                
+                                return (
+                                   <span>{car}, </span>
+                                )
+                                })}
+                            </div>
+                        {/* <div class="input-field col s7">
+                                <img className="prefix" src="truck.png" style={{
+                                    height: '100%',
+                                    width: 'auto',
+                                    padding:'5px'
+                                }}/>
+                                <select>
+                                <option> {ad.typeCar[0]} </option>
+                                <option> {ad.typeCar[1]} </option>
+                                <option> {ad.typeCar[2]} </option>
+                                <option> {ad.typeCar[3]} </option>
+                                <option> {ad.typeCar[4]} </option>
+                            </select>
+                            
+                            <label htmlFor="" className="black-text bolt"></label>
+                           
+                            
+                        </div> */}
+                            {/* <div className="chip" >
+                                <img src="truck.png" style={{
+                                    height: '100%',
+                                    width: 'auto',
+                                }}/>{ad.typeCar}
+                            </div> */}
+                    </div>
+                    <div className="col s12" >
+                        <div className="col" >
+                            <h6><i className="material-icons">fitness_center</i>  {ad.capacity} т.</h6>
+                        </div> 
+                        <div className="col" >
+                            <h6><i className="material-icons">zoom_out_map</i>  {ad.obem}м<sup>3</sup></h6>
+                        </div>
+                        <div><h6>{ad.about}</h6></div>
+                        </div>
+                    {/* {sub && <div className="row">  */}
+                        <div className="col s12" >
+                            
+                        </div>
+                        <div className="col" >
+                            <h6>{ ad.phone }</h6>
+                        </div>
+                        <div className="col green-text" >
+                            <h6><b>{ad.value} {ad.valuta}</b></h6>
+                        </div>
+                    </div>
+                )
+                })}
+                </>
         )
 }

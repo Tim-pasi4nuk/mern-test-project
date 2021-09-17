@@ -74,10 +74,13 @@ export const CabinetPage = () => {
         catch(e){}
     },[token,request])
 
+    
+
     useEffect(()=>{
         getUser()
         checkSub()
-        message(error) 
+        message(error)
+        console.log(error)
         clearError()
     },[checkSub, getUser, error, message, clearError])
 
@@ -89,7 +92,8 @@ export const CabinetPage = () => {
     return(
         <>
         <h3>Личный кабинет</h3>
-        <div className="container" style={{border:'1px solid ', borderRadius:'10px'}}>
+        <div className="row card-panel #c62828 red lighten-5">
+        <div>
             <div className="container">
             <i class="material-icons large">account_box</i>
             </div>
@@ -103,6 +107,7 @@ export const CabinetPage = () => {
             </>}
             {!sub && <NavLink to ="/SubscribePage">Купить подписку</NavLink>}
             </div>
+        </div>
         </div>
         <div className="container">
             <div>

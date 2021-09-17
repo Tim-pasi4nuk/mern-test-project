@@ -8,7 +8,6 @@ const router = Router()
 router.post('/getListCargo', auth, async (req, res) => {
     try {
         const links = await Cargo.find({  owner: req.user.userId })
-        console.log(req.user.userId,'find',links)
         res.json(links)
 
     } catch (e) {
@@ -30,7 +29,6 @@ router.post('/getListVehile', auth, async (req, res) => {
 router.post('/',  async (req, res) => {
     try {
         const {regionFrom, regionTo, cityFrom, cityTo, typeList} = req.body
-        console.log(regionFrom, regionTo, cityFrom, cityTo, typeList)
 
         if(typeList==="cargo"){
             if(regionFrom==="Украина"&&regionTo==="Украина"){
