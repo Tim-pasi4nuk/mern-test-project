@@ -89,12 +89,12 @@ export const CargoPage = () => {
                 <div className="input-field col s6 m6">
                     <input 
                     placeholder="yyyy-mm-dd"
-                    type="text" 
+                    type="date" 
                     id="dateFrom" 
                     name="dateFrom" 
                     min = {mindata} 
                     max="2030-01-01" 
-                    className="datepicker"
+                    className=""
                     value={form.dateFrom}
                     onChange={changeHandler} 
                     />
@@ -105,13 +105,13 @@ export const CargoPage = () => {
                 
                     <input 
                     placeholder="yyyy-mm-dd"
-                    type="text" 
+                    type="date" 
                     id="dateTo" 
                     name="dateTo" 
                     min={mindata} 
                     max="2030-01-01" 
                     value={form.dateTo}
-                    className="datepicker"
+                    className=""
                     onChange={changeHandler} 
                     />
                     <label htmlFor="dateTo">конец погрузки</label>

@@ -33,7 +33,7 @@ export const LoginPage = () => {
         <div className="row">
             <div className=" s6">
                 <h1 className="center">Войти</h1>
-                <div className="card #c62828 red darken-1">
+                <div className="card #c62828 red lighten-1">
                     <div className="card-content white-text">
                         <span className="card-title"><h3>Авторизация</h3></span>
                        <div>
@@ -65,7 +65,7 @@ export const LoginPage = () => {
                     </div>
                     <div className="card-action center">
                         <button
-                         className="btn #c62828 red darken-3"
+                         className="btn #c62828 red darken-4"
                          style={{marginRight:10}}
                          disabled={loading}
                          onClick={loginHandler}

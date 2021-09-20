@@ -143,7 +143,8 @@ export const AdListCabinet = ({ad,type}) => {
                         return (
                             <span>{tag} </span>
                         )
-                        })}
+                        })}<div className="row center">
+                        <div className="card-action ">
                         <button 
                     className="waves-effect waves-light btn white-text #c62828 red darken-1"
                     data-user={ad._id}
@@ -153,6 +154,8 @@ export const AdListCabinet = ({ad,type}) => {
                     Удалить
                     </button>
                     </div>
+                    </div>
+            </div> 
                     
                 )
                 })}

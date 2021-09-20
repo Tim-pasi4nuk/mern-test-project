@@ -41,7 +41,8 @@ export const VehilePage = () => {
         
         var elems = document.querySelectorAll('select')
         window.M.FormSelect.init(elems, '')
-        elems = document.querySelectorAll('.datepicker');
+        elems = document.querySelectorAll('.datepicker')
+        var option = 
         window.M.Datepicker.init(elems, '');
 
         // var elemsAuto = document.querySelectorAll('.autocomplete')
@@ -101,12 +102,11 @@ export const VehilePage = () => {
                 <div className="input-field col s6 m6">
                     <input 
                      placeholder="yyyy-mm-dd"
-                    type="text" 
+                    type="date" 
                     id="dateFrom" 
                     name="dateFrom" 
-                    min = {mindata} 
                     max="2030-01-01" 
-                    className="datepicker"
+                    className=""
                     value={form.dateFrom}
                     onChange={changeHandler} 
                     />
@@ -117,12 +117,12 @@ export const VehilePage = () => {
                 
                     <input 
                      placeholder="yyyy-mm-dd"
-                    type="text" 
+                    type="date" 
                     id="dateTo" 
                     name="dateTo" 
                     min={mindata} 
                     max="2030-01-01" 
-                    className="datepicker"
+                    className=""
                     value={form.dateTo}
                     onChange={changeHandler} 
                     />

@@ -39,7 +39,7 @@ export const RegisterPage = () => {
     <div className="row">
         <form className="col s12">
         <h4 className="center">Зарегистрироваться</h4>
-        <div className="card #c62828 red darken-1">
+        <div className="card #c62828 red lighten-1">
             <div className="card-content white-text">
                 
                     <div className="row white-text">
@@ -93,7 +93,7 @@ export const RegisterPage = () => {
                     <div className="row center">
                         <div className="card-action">
                             <button 
-                            className="btn white-text #c62828 red darken-1"
+                            className="btn white-text #c62828 red darken-4"
                             onClick={registerHandler}
                             disabled={loading}
                             >

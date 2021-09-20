@@ -37,14 +37,13 @@ export const LoginCreate = () => {
         <div className="row">
             <div className=" s6">
                 <h1 className="center">Войти</h1>
-                <div className="card #6d4c41 brown darken-1">
+                <div className="card #c62828 red lighten-1">
                     <div className="card-content white-text">
-                        <span className="card-title">Авторизация</span>
+                        <span className="card-title"><h3>Авторизация</h3></span>
                        <div>
 
                         <div className="input-field">
                             <input
-                                placeholder="Введите email"
                                 id="email"
                                 type="text" 
                                 name="email"
@@ -57,7 +56,6 @@ export const LoginCreate = () => {
 
                             <div className="input-field">
                             <input
-                                placeholder="Введите пароль"
                                 id="password"
                                 type="password" 
                                 name="password"
@@ -71,7 +69,7 @@ export const LoginCreate = () => {
                     </div>
                     <div className="card-action center">
                         <button
-                         className="btn #6d4c41 brown darken-3"
+                         className="btn #c62828 red darken-4"
                          style={{marginRight:10}}
                          disabled={loading}
                          onClick={loginHandler}
