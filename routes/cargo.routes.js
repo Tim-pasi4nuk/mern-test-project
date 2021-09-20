@@ -13,7 +13,7 @@ router.post('/generate', auth, async (req, res) => {
     const typeCar = [typeCar0, typeCar1, typeCar2, typeCar3, typeCar4]
     const cargo = new Cargo({ dateFrom, dateTo, regionFrom, regionTo, cityFrom, codeCargo, cityTo, typeCargo, typeCar, amountCar, value, valuta, phone, about, capacity, obem, email, owner: req.user.userId, userName, tag})
     
-
+    console.log(cargo)
     await cargo.save(function (err) {
         console.log(err);
     })
@@ -29,6 +29,13 @@ router.post('/generate', auth, async (req, res) => {
 router.get('/',  async (req, res) => {
     
     const cargo = await Cargo.find()
+    for (var car in cargo) {
+      if(cargo[car].dateTo< Date.now()){
+        cargo[car].remove()
+        console.log(cargo[car])
+      }
+      
+    }
     res.json(cargo)
     try {
     } catch (e) {

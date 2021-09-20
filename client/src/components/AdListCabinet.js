@@ -74,7 +74,7 @@ export const AdListCabinet = ({ad,type}) => {
             return(
                 <div className="row #c62828 red lighten-5 z-depth-1">
                     <div className="col s12 center">
-                        <span><b>{ad.regionFrom} - {ad.regionTo}</b></span>
+                        <span><b>{ad.regionFrom}, {ad.cityFrom} - {ad.regionTo}, {ad.cityTo}</b></span>
                     </div>
                     <div className="row s12" >
                         <div className="col s5 m4" >

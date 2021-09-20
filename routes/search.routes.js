@@ -28,6 +28,24 @@ router.post('/getListVehile', auth, async (req, res) => {
 // /api/search/
 router.post('/',  async (req, res) => {
     try {
+        const carg = await Cargo.find()
+        for (var car in carg) {
+            if(Date.parse(carg[car].dateTo)+86400000 < Date.now()){
+              carg[car].remove()
+              console.log(carg[car])
+            }
+            
+          }
+          const vehil = await Vehile.find()
+        for (var car in vehil) {
+            
+            console.log('deleted',Date.parse(vehil[car].dateTo)+86400000, Date.now() )
+            if(Date.parse(vehil[car].dateTo)+86400000 < Date.now()){
+                console.log('deleted',Date.parse(vehil[car].dateTo)+86400000, Date.now() )
+              vehil[car].remove()
+            }
+            
+          }
         const {regionFrom, regionTo, cityFrom, cityTo, typeList} = req.body
 
         if(typeList==="cargo"){

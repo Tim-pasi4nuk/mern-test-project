@@ -92,7 +92,7 @@ export const AdList = ({ad}) => {
                         <div className="row #c62828 red lighten-5 z-depth-1">
                         
                         <div className="col s12 center">
-                            <span style={{textTransform:'uppercase'}}><b>{ad.regionFrom} - {ad.regionTo}</b></span>
+                            <span style={{textTransform:'uppercase'}}><b>{ad.regionFrom}, {ad.cityFrom} - {ad.regionTo}, {ad.cityTo}</b></span>
                         </div>
                         <div className="col s12" >
                             <div className="col" >
