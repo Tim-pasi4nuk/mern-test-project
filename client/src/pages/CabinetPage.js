@@ -108,7 +108,7 @@ export const CabinetPage = () => {
             
             <h6>Подписка действительна до:{new Date(userInfo.dateSubscribe).toLocaleDateString()}</h6>
             </>}
-            {!sub && <NavLink to ="/SubscribePage">Купить подписку</NavLink>}
+            {/* {!sub && <NavLink to ="/SubscribePage">Купить подписку</NavLink>} */}
             </div>
         </div>
         </div>
