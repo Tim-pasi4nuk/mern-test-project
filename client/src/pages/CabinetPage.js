@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom'
 import { Loader } from '../components/Loader'
 export const CabinetPage = () => {
     const [ads, setAds] = useState([])
+    const [type, setType] = useState()
     const [search, setSearch] = useState(false)
     const {loading, request, error, clearError} = useHttp()
     const {token} = useContext(AuthContext)
@@ -46,6 +47,7 @@ export const CabinetPage = () => {
             })
             console.log(list)
             setAds(list)
+            setType('cargo')
             setSearch(true)
         }
          catch (e){}
@@ -57,6 +59,7 @@ export const CabinetPage = () => {
             })
             console.log(list)
             setAds(list)
+            setType('vehile')
             setSearch(true)
         }
          catch (e){}
@@ -127,7 +130,7 @@ export const CabinetPage = () => {
                 Посмотреть мой транспорт</a>
             </div>
         
-        </div>{!loading && search && <AdListCabinet ad={ads}/>}
+        </div>{!loading && search && <AdListCabinet ad={ads} type={type}/>}
         </>
     )
 }

@@ -3,10 +3,10 @@ import { AuthContext } from '../context/AuthContext'
 import { useHttp } from '../hooks/http.hook'
 import { useMessage } from '../hooks/message.hook'
 import 'materialize-css'
-export const AdListCabinet = ({ad}) => {
+export const AdListCabinet = ({ad,type}) => {
     
     const message = useMessage()
-    const {request, error, clearError} = useHttp()
+    const {loading, request, error, clearError} = useHttp()
     const {token} = useContext(AuthContext)
     const [sub, setSub] = useState()
     const [page, setPage] = useState()
@@ -21,12 +21,35 @@ export const AdListCabinet = ({ad}) => {
         catch(e){}
     },[token,request])
 
-    const addHandler = async () => {
-       message("Купите подписку для просмотра информации")
-    }
-
     const nextPage = (index) => {
       
+    }
+    const addHandler = async event => {  
+       if(type==='cargo'){
+           const id = event.target.dataset.user
+        try {
+            console.log('cargo',event.target.dataset.user)
+            
+            const data = await request('/api/cargo/delete', 'POST', {id}, {
+                Authorization: `Bearer ${token}`
+            })
+            message(data.message)
+            window.location.reload()
+        }catch (e)
+        {}
+    }
+        if(type==='vehile'){
+            console.log('vehile',event.target.dataset.user)
+            try {
+                const id = event.target.dataset.user
+                const data = await request('/api/vehile/delete', 'POST', {id}, {
+                    Authorization: `Bearer ${token}`
+                })
+                message(data.message)
+                window.location.reload()
+            }catch (e)
+            {}
+        }
     }
 
     useEffect(()=>{
@@ -53,7 +76,7 @@ export const AdListCabinet = ({ad}) => {
         <>
         <div className="row"></div>
         {ad.map((ad, index) => {
-             console.log(ad.typeCar)
+             
             return(
                 <div className="row #c62828 red lighten-5 z-depth-1">
                     <div className="col s12 center">
@@ -74,7 +97,7 @@ export const AdListCabinet = ({ad}) => {
                                 {ad.typeCar.map((car, index) => {
                                 
                                 return (
-                                   <span>{car}, </span>
+                                   <span>{car} </span>
                                 )
                                 })}
                             </div>
@@ -122,7 +145,21 @@ export const AdListCabinet = ({ad}) => {
                         <div className="col green-text" >
                             <h6><b>{ad.value} {ad.valuta}</b></h6>
                         </div>
+                        {ad.tag.map((tag, index) => {
+                        return (
+                            <span>{tag} </span>
+                        )
+                        })}
+                        <button 
+                    className="waves-effect waves-light btn white-text #c62828 red darken-1"
+                    data-user={ad._id}
+                    onClick={addHandler}
+                    disabled={loading}
+                    >
+                    Удалить
+                    </button>
                     </div>
+                    
                 )
                 })}
                 </>

@@ -13,6 +13,7 @@ import { VehilePage } from "./pages/VehilePage"
 import { LoginCreate } from "./pages/LoginCreatepage"
 import { SubscribePage }  from "./pages/SubscribePage"
 import { AboutUsPage } from "./pages/AboutUsPage"
+import {LiqPayPage} from "./pages/LiqPayPage"
 export const useRoutes = IsAuthenticated => {
     if (IsAuthenticated){
         return (
@@ -37,6 +38,9 @@ export const useRoutes = IsAuthenticated => {
                 </Route>
                 <Route path="/cargo" >
                     <CargoPage />
+                </Route>
+                <Route path="/liq" >
+                    <LiqPayPage />
                 </Route>
                 {/* <Route path="/" >
                     <StartPage />

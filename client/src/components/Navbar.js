@@ -47,7 +47,7 @@ export const Navbar = () => {
                                         
                                         }}/>
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
-                        {!sub && <li><NavLink to ="/SubscribePage">Купить подписку</NavLink></li>}
+                        {/* {!sub && <li><NavLink to ="/liq">Купить подписку</NavLink></li>} */}
                         <li><NavLink className="sidenav-close" to ="/search">Поиск</NavLink></li>
                         <li><NavLink className="sidenav-close" to ="/cargo">Создать груз</NavLink></li>
                         <li><NavLink className="sidenav-close" to ="/vehile">Создать транспорт</NavLink></li>

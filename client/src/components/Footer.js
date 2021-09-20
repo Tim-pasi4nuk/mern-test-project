@@ -6,7 +6,8 @@ export const Footer = () => {
       <div className="container">
         <div className="row">
           <div className="col l4 offset-l2 s12">
-            <h5 className="white-text">Dogruz777</h5>
+          <NavLink className="sidenav-close white-text" to ="/about" ><h5 className="white-text">Dogruz777</h5></NavLink>
+            
             <ul>
             <li><NavLink className="sidenav-close white-text" to ="/search" >Поиск</NavLink></li>
             <li><NavLink className="sidenav-close white-text" to ="/vehile" >Создать груз</NavLink></li>

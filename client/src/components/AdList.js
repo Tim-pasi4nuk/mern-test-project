@@ -92,7 +92,7 @@ export const AdList = ({ad}) => {
                         <div className="row #c62828 red lighten-5 z-depth-1">
                         
                         <div className="col s12 center">
-                            <span><b>{ad.regionFrom} - {ad.regionTo}</b></span>
+                            <span style={{textTransform:'uppercase'}}><b>{ad.regionFrom} - {ad.regionTo}</b></span>
                         </div>
                         <div className="col s12" >
                             <div className="col" >
@@ -121,7 +121,7 @@ export const AdList = ({ad}) => {
                                 {ad.typeCar.map((car, index) => {
                                 
                                 return (
-                                   <span>{car}, </span>
+                                   <span><b>{car}</b> </span>
                                 )
                                 })}
                                 {/* </ul> */}
@@ -159,6 +159,12 @@ export const AdList = ({ad}) => {
                             </div>
                             <div className="col green-text" >
                                 <h6><b>{ad.value} {ad.valuta}</b></h6>
+                                {ad.tag.map((tag, index) => {
+                                
+                                return (
+                                   <span>{tag} </span>
+                                )
+                                })}
                             </div>
                             
                 

@@ -22,8 +22,6 @@ export const SearchPage = () => {
 
     const changeHandler = even => {
         setForm ({...form, [even.target.name]: even.target.value})
-        
-        
     }
 
     const findCity = (city) => {
@@ -103,7 +101,7 @@ export const SearchPage = () => {
                             <div className="row" >
                         <div className="input-field col s12 m5">
                         <select
-                            className="regionFrom"
+                            className="regionFrom "
                             id="regionFrom" 
                             type="text" 
                             name="regionFrom"

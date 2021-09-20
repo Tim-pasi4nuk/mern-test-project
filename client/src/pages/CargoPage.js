@@ -14,7 +14,7 @@ export const CargoPage = () => {
     const today = new Date()
     const [userInfo, setUserInfo] = useState({email:'', links:[], subscribe:'', dateSubscribe:'', phone:'', userName:''})
     const  [form, setForm] = useState({
-        dateFrom:today.toISOString().substring(0, 10), dateTo:today.toISOString().substring(0, 10), regionFrom:'Украина', regionTo:'Украина', cityFrom:'', cityTo:'', typeItem:'', type0:'', type1:'',type2:'',type3:'', type4:'', amountCar:'', value:'', valuta:'', phone:'', email:'', userName:'', capacity:'', obem:'', about:' ', aboutHeigth:' ', aboutWidth:' ', aboutDepth:' '
+        dateFrom:today.toISOString().substring(0, 10), dateTo:today.toISOString().substring(0, 10), regionFrom:'Украина', regionTo:'Украина', cityFrom:'', cityTo:'', typeItem:'', typeCar0:'', typeCar1:'',typeCar2:'',typeCar3:'', typeCar4:'', amountCar:'', value:'', valuta:'', phone:'', email:'', userName:'', capacity:'', obem:'', about:' ', aboutHeigth:' ', aboutWidth:' ', aboutDepth:' ', tag0:'', tag1:''
     })
 
     
@@ -33,6 +33,8 @@ export const CargoPage = () => {
 
         elems = document.querySelectorAll('.autocomplete');
         window.M.Autocomplete.init(elems,'');
+        elems = document.querySelectorAll('.datepicker');
+        window.M.Datepicker.init(elems, '');
 
     }, [])
 
@@ -79,35 +81,40 @@ export const CargoPage = () => {
         <div className="row">
             <h3>Добавление заявки на перевозку груза</h3>
         </div>
-        <form className="col s12 m11 center" style={{border:'2px solid'}} onSubmit="return false" >
+        <form className="col s12 m11 center" onSubmit="return false" >
+        <div className="card #ffebee red lighten-5">
+                        <div className="card-content">
             <div className="row" ></div>
             <div className="row" >
                 <div className="input-field col s6 m6">
                     <input 
-                    type="date" 
+                    placeholder="yyyy-mm-dd"
+                    type="text" 
                     id="dateFrom" 
                     name="dateFrom" 
                     min = {mindata} 
                     max="2030-01-01" 
-                   
+                    className="datepicker"
                     value={form.dateFrom}
                     onChange={changeHandler} 
                     />
-                    <label htmlFor="dateFrom">ПОГРУЗКА C</label>
+                    <label htmlFor="dateFrom">начало погрузки</label>
                 </div>
                 <div className="col s1 m1"></div>
                 <div className="input-field col s6 m6">
                 
                     <input 
-                    type="date" 
+                    placeholder="yyyy-mm-dd"
+                    type="text" 
                     id="dateTo" 
                     name="dateTo" 
                     min={mindata} 
                     max="2030-01-01" 
                     value={form.dateTo}
-                    onChange={changeHandler, changeSelector} 
+                    className="datepicker"
+                    onChange={changeHandler} 
                     />
-                    <label htmlFor="dateTo">ПОГРУЗКА ПО</label>
+                    <label htmlFor="dateTo">конец погрузки</label>
                 </div>
             </div>
             <div className="row" >
@@ -167,6 +174,7 @@ export const CargoPage = () => {
            
             {/* ГРУЗ ВЕС ОБ'ЄМ */}
             <div className="row" style={{borderTop:'1px solid'}} >
+                
                 <div className="input-field col s6 m6">
                     <input 
                     placeholder="Запчасти"
@@ -190,7 +198,7 @@ export const CargoPage = () => {
                     onChange={changeHandler} 
                     min="1"
                     />
-                    <label htmlFor="capacity">Вес груза</label>
+                    <label htmlFor="capacity">Вес груза(T)</label>
                 </div> 
                 <div className="input-field col s3 m3">
                     <input 
@@ -216,7 +224,7 @@ export const CargoPage = () => {
                         value={form.aboutHeigth}
                         onChange={changeHandler} 
                         />
-                        <label htmlFor="aboutHeigth">Высота</label>
+                        <label htmlFor="aboutHeigth">Высота(М)</label>
                 </div> 
                 <div className="input-field col s4 m2 ">
                     <input 
@@ -229,7 +237,7 @@ export const CargoPage = () => {
                     onChange={changeHandler} 
                     min="1"
                     />
-                    <label htmlFor="aboutWidth">Ширина</label>
+                    <label htmlFor="aboutWidth">Ширина(М)</label>
                 </div> 
                 <div className="input-field col s4 m2">
                     <input 
@@ -242,7 +250,7 @@ export const CargoPage = () => {
                     onChange={changeHandler} 
                     min="1"
                     />
-                    <label htmlFor="aboutDepth">Глубина</label>
+                    <label htmlFor="aboutDepth">Глубина(М)</label>
                 </div>
                 {/* <div className="input-field col s2 m2" style={{marginLeft:'1%'}} >
                     <label>
@@ -254,72 +262,74 @@ export const CargoPage = () => {
             
             {/* ТРАНСПОРТ */}
             <div class="row" style={{borderTop:'1px solid'}} >
-               
-                <div className="input-field col s12 m3">
+            <div className="col s12 m6 z-depth-1 #ffebee red lighten-4">
+            
+                <div className="input-field col s12 m12">
                     
                     <select 
                     class="typeCar0" 
                     id="typeCar0" 
                     name="typeCar0" 
                     onChange={changeHandler} 
-                    value={form.type0}
+                    value={form.typeCar0}
                     >
                         <SelectOptionTypeVehile />
                     </select>
                     <label htmlFor="typeCar0">Тип транспорта</label>
                 </div> 
-                <div className="input-field col s12 m3">
+                <div className="input-field col s12 m12">
                     
                     <select 
                     class="typeCar1" 
                     id="typeCar1" 
                     name="typeCar1" 
                     onChange={changeHandler} 
-                    value={form.type1}
+                    value={form.typeCar1}
                     >
                         <SelectOptionTypeVehile />
                     </select>
-                    <label htmlFor="typeCar1">Тип транспорта</label>
+                    <label htmlFor="typeCar1"></label>
                 </div> 
-                <div className="input-field col s12 m3">
+                <div className="input-field col s12 m12">
                     
                     <select 
                     class="typeCar2" 
                     id="typeCar2" 
                     name="typeCar2" 
                     onChange={changeHandler} 
-                    value={form.type2}
+                    value={form.typeCar2}
                     >
                         <SelectOptionTypeVehile />
                     </select>
-                    <label htmlFor="typeCar2">Тип транспорта</label>
+                    <label htmlFor="typeCar2"></label>
                 </div> 
-                <div className="input-field col s12 m3">
+                <div className="input-field col s12 m12">
                     
                     <select 
                     class="typeCar3" 
                     id="typeCar3" 
                     name="typeCar3" 
                     onChange={changeHandler} 
-                    value={form.type3}
+                    value={form.typeCar3}
                     >
                         <SelectOptionTypeVehile />
                     </select>
-                    <label htmlFor="typeCar3">Тип транспорта</label>
+                    <label htmlFor="typeCar3"></label>
                 </div> 
-                <div className="input-field col s12 m3">
+                <div className="input-field col s12 m12">
                     
                     <select 
                     class="typeCar4" 
                     id="typeCar4" 
                     name="typeCar4" 
                     onChange={changeHandler} 
-                    value={form.type4}
+                    value={form.typeCar4}
                     >
                         <SelectOptionTypeVehile />
                     </select>
-                    <label htmlFor="typeCar4">Тип транспорта</label>
+                    <label htmlFor="typeCar4"></label>
                 </div> 
+                </div>
                 {/* <div className="input-field col s12 m2">
                     <input 
                     placeholder="2"
@@ -333,34 +343,73 @@ export const CargoPage = () => {
                     />
                     <label htmlFor="amounCar">Количество машин</label>
                 </div>  */}
-                <div className="input-field col s6 offset-m3 m3">
-                    <input 
-                    placeholder="Цена"
-                    id="value" 
-                    type="number" 
-                    name="value"
-                    className="validate" 
-                    onChange={changeHandler}
-                    value={form.value} 
-                    min="1"
-                    />
-                    <label htmlFor="value">Цена</label>
+                
+                <div className="col offset-m1 m5 s12 z-depth-1 #ffebee green lighten-5">
+                        
+                        <div className="input-field col s12 m12">
+                            <input 
+                            placeholder="1000"
+                            id="value" 
+                            type="number" 
+                            name="value"
+                            className="validate" 
+                            onChange={changeHandler}
+                            value={form.value} 
+                        
+                            />
+                            <label htmlFor="value" className="black-text bolt">Стоимость перевозки</label>
+                        </div>
+                        
+                        <div className="input-field col s12 m12">
+                            <select 
+                            class="valuta" 
+                            id="valuta" 
+                            name="valuta" 
+                            onChange={changeHandler} 
+                            value={form.valuta}
+                            >
+                                <option value="" selected>Не выбрано</option>
+                                 <option value="Грн">Грн</option>
+                                <option value="Грн/км">Грн/км</option>
+                                <option value="USD">USD</option>
+                                <option value="EURO">EURO</option>
+                                
+                            </select>
+                        <label htmlFor="valuta" className="black-text bolt">Оплата</label>
+                    </div>
+                    <div className="input-field col s12 m12">
+                            <select 
+                            class="tag0" 
+                            id="tag0" 
+                            name="tag0" 
+                            onChange={changeHandler} 
+                            value={form.tag0}
+                            >
+                                <option value="" selected>Не выбрано</option>
+                                <option value="При погрузке">При погрузке</option>
+                                <option value="При выгрузке">При выгрузке</option>
+                            </select>
+                        <label htmlFor="tag0" className="black-text bolt">Место оплаты</label>
+                    </div>
+                    <div className="input-field col s12 m12">
+                            <select 
+                            class="tag1" 
+                            id="tag1" 
+                            name="tag1" 
+                            onChange={changeHandler} 
+                            value={form.tag1}
+                            >
+                                <option value="" selected>Не выбрано</option>
+                                <option value="Наличными">Наличными</option>
+                                <option value="Без наличными">Без наличными</option>
+                                <option value="На карту">На карту</option>
+                                <option value="Комбинированый">Комбинированый</option>
+                            </select>
+                        <label htmlFor="tag1" className="black-text bolt">Тип оплаты</label>
+                    </div>
+                </div>
                 </div>
                 
-                <div className="input-field col s6 m3">
-                    <select 
-                    class="valuta" 
-                    id="valuta" 
-                    name="valuta" 
-                    onChange={changeHandler} 
-                    value={form.valuta}
-                    >
-                        <option value="Грн" selected>Грн</option>
-                        <option value="Грн/км">Грн/км</option>
-                    </select>
-                <label htmlFor="valuta">Грн/грн/км</label>
-                </div>
-                </div>
 {/*                 
                 <div className="row" style={{borderTop:'1px solid'}}>
                 <div className="input-field col s12 m3" id="div_name">
@@ -415,7 +464,8 @@ export const CargoPage = () => {
                     </button>
                 </div>
             </div>
-               
+            </div>
+            </div>  
     </form>
     
 </div>

@@ -14,7 +14,7 @@ export const VehilePage = () => {
     const mindata = Date.now()
     const [userInfo, setUserInfo] = useState({email:'', links:[], subscribe:'', dateSubscribe:'', phone:'', userName:''})
     const  [form, setForm] = useState({
-        dateFrom:today.toISOString().substring(0, 10), dateTo:today.toISOString().substring(0, 10), regionFrom:'Украина', regionTo:'Украина', cityFrom:'', cityTo:'', codeVehile:'', typeCar:'', type0:'', type1:'',type2:'',type3:'', type4:'', amountCar:'', value:'', valuta:'', phone:'', email:'', about:'', capacity:'', userName:'', aboutHeigth:' ', aboutWidth:' ',  obem:'', aboutDepth:' '
+        dateFrom:today.toISOString().substring(0, 10), dateTo:today.toISOString().substring(0, 10), regionFrom:'Украина', regionTo:'Украина', cityFrom:'', cityTo:'', codeVehile:'', typeCar:'', type0:'', type1:'',type2:'',type3:'', type4:'', amountCar:'', value:'', valuta:'', phone:'', email:'', about:'', capacity:'', userName:'', aboutHeigth:' ', aboutWidth:' ',  obem:'', aboutDepth:' ', tag0:'', tag1:''
     })
 
     const addUserInfo = async () =>{
@@ -91,11 +91,14 @@ export const VehilePage = () => {
     {/* <form className="col s1"></form> */}
     {/* ДАТА И ГОРОД */}
     <div className="row s12 m12"><h3>Добавление заявки на транспорт</h3></div>
-    <form className="col s11 m11 center" style={{border:'2px solid'}} >
+    <form className="col s12 m12 center" >
+    <div className="card #ffebee red lighten-5">
+                        <div className="card-content">
         <div className="row" ></div>
         <div className="row" >
                 <div className="input-field col s6 m6">
                     <input 
+                     placeholder="yyyy-mm-dd"
                     type="date" 
                     id="dateFrom" 
                     name="dateFrom" 
@@ -105,12 +108,13 @@ export const VehilePage = () => {
                     value={form.dateFrom}
                     onChange={changeHandler} 
                     />
-                    <label htmlFor="dateFrom"  className="black-text bolt">ПОГРУЗКА C</label>
+                    <label htmlFor="dateFrom"  className="black-text bolt">начало погрузки</label>
                 </div>
                 <div className="col s1 m1"></div>
                 <div className="input-field col s6 m6">
                 
                     <input 
+                     placeholder="yyyy-mm-dd"
                     type="date" 
                     id="dateTo" 
                     name="dateTo" 
@@ -119,7 +123,7 @@ export const VehilePage = () => {
                     value={form.dateTo}
                     onChange={changeHandler} 
                     />
-                    <label htmlFor="dateTo"  className="black-text bolt">ПОГРУЗКА ПО</label>
+                    <label htmlFor="dateTo"  className="black-text bolt">конец погрузки</label>
                 </div>
             </div>
             <div className="row" >
@@ -179,8 +183,9 @@ export const VehilePage = () => {
 
         {/* ТИП ТРАНСПОРТА ВЕС ОБ'ЄМ */}
         <div class="row" style={{borderTop:'1px solid'}} >
-               
-                <div className="input-field col s12 m3">
+        <div className="">
+        <div className="col s12 m3 z-depth-1 #ffebee red lighten-4">
+                <div className="input-field col s12 m12">
                     
                     <select 
                     class="typeCar0" 
@@ -193,7 +198,7 @@ export const VehilePage = () => {
                     </select>
                     <label htmlFor="typeCar0" className="black-text bolt">Тип транспорта</label>
                 </div> 
-                <div className="input-field col s12 m3">
+                <div className="input-field col s12 m12">
                     
                     <select 
                     class="typeCar1" 
@@ -204,9 +209,9 @@ export const VehilePage = () => {
                     >
                         <SelectOptionTypeVehile />
                     </select>
-                    <label htmlFor="typeCar1" className="black-text bolt">Тип транспорта</label>
+                    <label htmlFor="typeCar1" className="black-text bolt"></label>
                 </div> 
-                <div className="input-field col s12 m3">
+                <div className="input-field col s12 m12">
                     
                     <select 
                     class="typeCar2" 
@@ -217,9 +222,9 @@ export const VehilePage = () => {
                     >
                         <SelectOptionTypeVehile />
                     </select>
-                    <label htmlFor="typeCar2" className="black-text bolt">Тип транспорта</label>
+                    <label htmlFor="typeCar2" className="black-text bolt"></label>
                 </div> 
-                <div className="input-field col s12 m3">
+                <div className="input-field col s12 m12">
                     
                     <select 
                     class="typeCar3" 
@@ -230,9 +235,9 @@ export const VehilePage = () => {
                     >
                         <SelectOptionTypeVehile />
                     </select>
-                    <label htmlFor="typeCar3" className="black-text bolt">Тип транспорта</label>
+                    <label htmlFor="typeCar3" className="black-text bolt"></label>
                 </div> 
-                <div className="input-field col s12 m3">
+                <div className="input-field col s12 m12">
                     
                     <select 
                     class="typeCar4" 
@@ -243,9 +248,10 @@ export const VehilePage = () => {
                     >
                         <SelectOptionTypeVehile />
                     </select>
-                    <label htmlFor="typeCar4" className="black-text bolt">Тип транспорта</label>
-                </div> 
-                <div className="input-field col s6 m2">
+                    <label htmlFor="typeCar4" className="black-text bolt"></label>
+                </div> </div> 
+                </div>
+                <div className="input-field col s12 m3">
                 <input 
                 placeholder="1"
                 id="amountCar" 
@@ -258,9 +264,35 @@ export const VehilePage = () => {
                 />
                 <label htmlFor="amounCar" className="black-text bolt">Количество машин</label>
             </div>
+            <div className="input-field col s12 m3">
+                    <input 
+                    placeholder="Вес"
+                    id="capacity" 
+                    type="number"
+                    name="capacity" 
+                    className="validate" 
+                    value={form.capacity}
+                    onChange={changeHandler} 
+                    
+                    />
+                    <label htmlFor="capacity" className="black-text bolt">Грузоподъёмность(T)</label>
+                </div> 
+                <div className="input-field col s12 m3">
+                    <input 
+                    placeholder="Объём груза"
+                    id="obem" 
+                    type="number" 
+                    name="obem"
+                    className="validate" 
+                    value={form.obem}
+                    onChange={changeHandler} 
+                    
+                    />
+                    <label htmlFor="obem" className="black-text bolt">Полезный объём (м<sup>3</sup>)</label>
+                </div>
 
             {/* ГАБАРИТЫ */}
-            <div className="input-field col s4 m2">
+            <div className="input-field col s12 m3">
                 <input 
                 placeholder="Высота"
                 id="about" 
@@ -269,9 +301,9 @@ export const VehilePage = () => {
                 value={form.aboutHeigth}
                 onChange={changeHandler} 
                 />
-                <label htmlFor="aboutHeight" className="black-text bolt">Высота</label>
+                <label htmlFor="aboutHeight" className="black-text bolt">Высота(М)</label>
             </div> 
-            <div className="input-field col s4 m2">
+            <div className="input-field col s12 m3">
                 <input 
                 placeholder="Ширина"
                 id="capasity" 
@@ -281,9 +313,9 @@ export const VehilePage = () => {
                 onChange={changeHandler} 
                 
                 />
-                <label htmlFor="aboutWidth" className="black-text bolt">Ширина</label>
+                <label htmlFor="aboutWidth" className="black-text bolt">Ширина(М)</label>
             </div> 
-            <div className="input-field col s4 m2">
+            <div className="input-field col s12 m3">
                 <input 
                 placeholder="Глубина"
                 id="volume" 
@@ -293,7 +325,7 @@ export const VehilePage = () => {
                 onChange={changeHandler} 
                 
                 />
-                <label htmlFor="aboutDepth" className="black-text bolt">Глубина</label>
+                <label htmlFor="aboutDepth" className="black-text bolt">Глубина(М)</label>
             </div>
             {/* <div className="input-field col s2 m3" style={{marginLeft:'1%'}} >
                 <label>
@@ -318,59 +350,72 @@ export const VehilePage = () => {
                 </select>
                 <label htmlFor="typeVehile">Тип транспорта</label>
             </div>  */}
-            <div className="input-field col s6 m3">
-                    <input 
-                    placeholder="Вес"
-                    id="capacity" 
-                    type="number"
-                    name="capacity" 
-                    className="validate" 
-                    value={form.capacity}
-                    onChange={changeHandler} 
-                    
-                    />
-                    <label htmlFor="capacity" className="black-text bolt">Грузоподъёмность</label>
-                </div> 
-                <div className="input-field col s6 m3">
-                    <input 
-                    placeholder="Объём груза"
-                    id="obem" 
-                    type="number" 
-                    name="obem"
-                    className="validate" 
-                    value={form.obem}
-                    onChange={changeHandler} 
-                    
-                    />
-                    <label htmlFor="obem" className="black-text bolt">Полезный объём (м<sup>3</sup>)</label>
+            
+                <div className="col offset-m3 m6 z-depth-1 #ffebee green lighten-5">
+                        <div className="">
+                        <div className="input-field col s12 m6">
+                            <input 
+                            placeholder="1000"
+                            id="value" 
+                            type="number" 
+                            name="value"
+                            className="validate" 
+                            onChange={changeHandler}
+                            value={form.value} 
+                        
+                            />
+                            <label htmlFor="value" className="black-text bolt">Стоимость перевозки</label>
+                        </div>
+                        
+                        <div className="input-field col s12 m6">
+                            <select 
+                            class="valuta" 
+                            id="valuta" 
+                            name="valuta" 
+                            onChange={changeHandler} 
+                            value={form.valuta}
+                            >
+                                <option value="" selected>Не выбрано</option>
+                                 <option value="Грн">Грн</option>
+                                <option value="Грн/км">Грн/км</option>
+                                <option value="USD">USD</option>
+                                <option value="EURO">EURO</option>
+                                
+                            </select>
+                        <label htmlFor="valuta" className="black-text bolt">Оплата</label>
+                    </div>
+                    <div className="input-field col s12 m6">
+                            <select 
+                            class="tag0" 
+                            id="tag0" 
+                            name="tag0" 
+                            onChange={changeHandler} 
+                            value={form.tag0}
+                            >
+                                <option value="" selected>Не выбрано</option>
+                                <option value="При погрузке">При погрузке</option>
+                                <option value="При выгрузке">При выгрузке</option>
+                            </select>
+                        <label htmlFor="tag0" className="black-text bolt">Место оплаты</label>
+                    </div>
+                    <div className="input-field col s12 m6">
+                            <select 
+                            class="tag1" 
+                            id="tag1" 
+                            name="tag1" 
+                            onChange={changeHandler} 
+                            value={form.tag1}
+                            >
+                                <option value="" selected>Не выбрано</option>
+                                <option value="Наличными" >Наличными</option>
+                                <option value="Без наличными">Без наличными</option>
+                                <option value="На карту">На карту</option>
+                                <option value="Комбинированый">Комбинированый</option>
+                            </select>
+                        <label htmlFor="tag1" className="black-text bolt">Тип оплаты</label>
+                    </div>
                 </div>
-            
-            <div className="input-field col s6 offset-m2 m2">
-                <input 
-                placeholder="1000"
-                id="value" 
-                type="number" 
-                name="value"
-                className="validate" 
-                onChange={changeHandler}
-                value={form.value} 
-               
-                />
-                <label htmlFor="value" className="black-text bolt">Стоимость перевозки</label>
-            </div>
-            
-            <div className="input-field col s6 m2">
-                <select 
-                class="valuta" 
-                id="valuta" 
-                name="valuta" 
-                onChange={changeHandler} 
-                value={form.valuta}
-                >
-                    <option value="Грн" selected>Грн</option>
-                    <option value="Грн/км">Грн/км</option>
-                </select>
-            <label htmlFor="valuta" className="black-text bolt">Грн/грн/км</label>
+                
             </div>
             </div>
         {/* <div className="row" style={{borderTop:'1px solid'}}>
@@ -421,6 +466,8 @@ export const VehilePage = () => {
                 Опубликовать
                 </button>
             </div>
+        </div>
+        </div>
         </div>
 </form>
 </div>

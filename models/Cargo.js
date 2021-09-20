@@ -20,7 +20,7 @@ const schema = new Schema({
     about:{type:String, default:'Не указано'},
     capacity:{type:String, default:'Не указано'},
     obem:{type:String, default:'Не указано'},
-    tags:[{type:String}],
+    tag:[{type:String}],
     userName:{type:String}
 })
 
