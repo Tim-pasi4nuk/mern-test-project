@@ -20,10 +20,6 @@ export const AdListCabinet = ({ad,type}) => {
         }
         catch(e){}
     },[token,request])
-
-    const nextPage = (index) => {
-      
-    }
     const addHandler = async event => {  
        if(type==='cargo'){
            const id = event.target.dataset.user
@@ -34,7 +30,6 @@ export const AdListCabinet = ({ad,type}) => {
                 Authorization: `Bearer ${token}`
             })
             message(data.message)
-            window.location.reload()
         }catch (e)
         {}
     }
@@ -46,7 +41,6 @@ export const AdListCabinet = ({ad,type}) => {
                     Authorization: `Bearer ${token}`
                 })
                 message(data.message)
-                window.location.reload()
             }catch (e)
             {}
         }

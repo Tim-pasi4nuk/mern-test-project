@@ -81,7 +81,7 @@ export const CargoPage = () => {
         <div className="row">
             <h3>Добавление заявки на перевозку груза</h3>
         </div>
-        <form className="col s12 m11 center" onSubmit="return false" >
+        <form className="col s12 m12 center" onSubmit="return false" >
         <div className="card #ffebee red lighten-5">
                         <div className="card-content">
             <div className="row" ></div>
@@ -261,8 +261,8 @@ export const CargoPage = () => {
             </div>
             
             {/* ТРАНСПОРТ */}
-            <div class="row" style={{borderTop:'1px solid'}} >
-            <div className="col s12 m6 z-depth-1 #ffebee red lighten-4">
+            <div class="row" >
+            <div className="col s12 m5 z-depth-1 #ffebee red lighten-4">
             
                 <div className="input-field col s12 m12">
                     
@@ -344,7 +344,7 @@ export const CargoPage = () => {
                     <label htmlFor="amounCar">Количество машин</label>
                 </div>  */}
                 
-                <div className="col offset-m1 m5 s12 z-depth-1 #ffebee green lighten-5">
+                <div className="col offset-m2 m5 s12 z-depth-1 #ffebee green lighten-5">
                         
                         <div className="input-field col s12 m12">
                             <input 
