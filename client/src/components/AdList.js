@@ -4,6 +4,8 @@ import { useHttp } from '../hooks/http.hook'
 import { useMessage } from '../hooks/message.hook'
 import 'materialize-css'
 export const AdList = ({ad}) => {
+    var jsonQuery = require('json-query')
+    let cityOption = require('./data.json')
     const message = useMessage()
     const {request, error, clearError} = useHttp()
     const {token} = useContext(AuthContext)
@@ -52,7 +54,22 @@ export const AdList = ({ad}) => {
         
         <div className="row"></div>
            {ad.map((ad, index) => {
-               
+                // var distance = require('google-distance-matrix')
+                // const reslat = jsonQuery(`regions[**].cities[name=${ad.cityFrom}].lat`,{data:cityOption})
+                // const reslng = jsonQuery(`regions[**].cities[name=${ad.cityFrom}].lng`,{data:cityOption})
+                
+                // const origins = [ad.cityFrom,`${reslat.value}, ${reslng.value}`]
+                // const reslatF = jsonQuery(`regions[**].cities[name=${ad.cityTo}].lat`,{data:cityOption})
+                // const reslngF = jsonQuery(`regions[**].cities[name=${ad.cityTo}].lng`,{data:cityOption})
+                // const destinations = [ad.cityTo,`${reslatF.value}, ${reslngF.value}`]
+                // console.log(origins, destinations)
+                // distance.mode('driving')
+                // distance.matrix(origins, destinations, function (err, distances) {
+                //     if (!err)
+                //         console.log(distances)
+                // })
+                
+                
             //    var 
             //     createtime = new Date(ad.dateCreate),
             //     nowtime = new Date(),

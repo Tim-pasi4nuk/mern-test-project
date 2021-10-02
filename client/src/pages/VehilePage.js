@@ -5,6 +5,7 @@ import { useMessage } from '../hooks/message.hook'
 import { SelectOptionTypeVehile } from '../components/SelectOptionTypeVehile'
 import {SelectOptionCity} from '../components/SelectOptionCity'
 import 'materialize-css'
+import Select from 'react-select'
 import IMask from 'imask';
 export const VehilePage = () => {
     const auth = useContext(AuthContext)
@@ -16,6 +17,30 @@ export const VehilePage = () => {
     const  [form, setForm] = useState({
         dateFrom:today.toISOString().substring(0, 10), dateTo:today.toISOString().substring(0, 10), regionFrom:'Украина', regionTo:'Украина', cityFrom:'', cityTo:'', codeVehile:'', typeCar:'', type0:'', type1:'',type2:'',type3:'', type4:'', amountCar:'', value:'', valuta:'', phone:'', email:'', about:'', capacity:'', userName:'', aboutHeigth:' ', aboutWidth:' ',  obem:'', aboutDepth:' ', tag0:'', tag1:''
     })
+    const [selectedOptionFrom, setOptionf] = useState()
+    const [selectedOptionTo, setOptiont] = useState()
+    let cityOption = require('./data.json')
+    var jsonQuery = require('json-query')
+    const [preFrom, setPreFrom] = useState({searched:''}) 
+    const [preTo, setPreTo] = useState({searched:''})
+    const [optionsFrom, setOptionsFrom] = useState([{value:'', label:''}])
+    const [optionsTo, setOptionsTo] = useState([{value:'', label:''}])
+    if(preFrom != form.regionFrom){
+        const res = jsonQuery(`regions[**][name=${form.regionFrom}].cities.name`,{data:cityOption, parents:form.regionFrom})
+        if(res.value!==null){
+            res.value.map((opti, index)=>{
+            optionsFrom[index] = {value:opti, label:opti}
+        }) }
+        setPreFrom(form.regionFrom)
+    }
+    if(preTo != form.regionTo){
+        const res = jsonQuery(`regions[**][name=${form.regionTo}].cities.name`,{data:cityOption, parents:form.regionTo})
+        if(res.value!==null){
+            res.value.map((opti, index)=>{
+            optionsTo[index] = {value:opti, label:opti}
+        }) }
+        setPreTo(form.regionTo)
+    }
 
     const addUserInfo = async () =>{
         try{
@@ -74,6 +99,17 @@ export const VehilePage = () => {
         form.userName=userInfo.userName
         setForm ({...form, [even.target.name]: even.target.value})
         
+    }
+    
+    const handlerChangeFrom = (selectedOptionFrom) => {
+        setOptionf(selectedOptionFrom)
+        console.log(selectedOptionFrom)
+        setForm ({...form, cityFrom: selectedOptionFrom.value})
+    }
+    const handlerChangeTo = (selectedOptionTo) => {
+        setOptiont(selectedOptionTo)
+        console.log(selectedOptionTo)
+        setForm ({...form, cityTo: selectedOptionTo.value})
     }
 
     const addHandler = async () => {
@@ -144,7 +180,18 @@ export const VehilePage = () => {
                     </select>
                     <label htmlFor="regionFrom"  className="black-text bolt">ОБЛАСТЬ ОТБЫТИЯ</label>
                 </div> 
-                <div className="input-field col s12 m6">
+                    <div className="input-field col s12 m6">
+                    
+                    <Select
+                        placeholder='ГОРОД'
+                        className="selectFrom"
+                        value={selectedOptionFrom}
+                        onChange={handlerChangeFrom}
+                        options={optionsFrom}
+                    />
+                    
+                </div>
+                {/* <div className="input-field col s12 m6">
                     <input 
                     id="cityFrom" 
                     type="text" 
@@ -154,7 +201,7 @@ export const VehilePage = () => {
                     onChange={changeHandler} 
                     />
                     <label htmlFor="cityFrom"  className="black-text bolt">ГОРОД</label>
-                </div>
+                </div> */}
                 <div className="input-field col s12 m6">
                 <select
                     className="CityTo"
@@ -169,8 +216,16 @@ export const VehilePage = () => {
                     </select>
                     <label htmlFor="regionTo"  className="black-text bolt">ОБЛАСТЬ ПРИЕЗДА</label>
                 </div>
-               
                 <div className="input-field col s12 m6">
+                    <Select
+                        placeholder='ГОРОД'
+                        
+                        value={selectedOptionTo}
+                        onChange={handlerChangeTo}
+                        options={optionsTo}
+                    />
+                </div>
+                {/* <div className="input-field col s12 m6">
                     <input 
                     id="cityTo" 
                     type="text" 
@@ -180,7 +235,7 @@ export const VehilePage = () => {
                     onChange={changeHandler} 
                     />
                     <label htmlFor="cityTo" className="black-text bolt">ГОРОД</label>
-                </div>
+                </div> */}
             </div> 
             
 

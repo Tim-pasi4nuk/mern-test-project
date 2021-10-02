@@ -1,11 +1,13 @@
 import React, {useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import {useHttp} from '../hooks/http.hook'
+import ReactDOM from 'react-dom';
 import { useMessage } from '../hooks/message.hook'
 import { SelectOptionTypeVehile } from '../components/SelectOptionTypeVehile'
 import {SelectOptionCity} from '../components/SelectOptionCity'
-import 'materialize-css'
-
+import {CityComponent} from '../components/CityComponent.js'
+import {CityFindOptions} from '../components/CityFindOptions.js'
+import Select from 'react-select'
 export const CargoPage = () => {
     
     const auth = useContext(AuthContext)
@@ -14,9 +16,32 @@ export const CargoPage = () => {
     const today = new Date()
     const [userInfo, setUserInfo] = useState({email:'', links:[], subscribe:'', dateSubscribe:'', phone:'', userName:''})
     const  [form, setForm] = useState({
-        dateFrom:today.toISOString().substring(0, 10), dateTo:today.toISOString().substring(0, 10), regionFrom:'Украина', regionTo:'Украина', cityFrom:'', cityTo:'', typeItem:'', typeCar0:'', typeCar1:'',typeCar2:'',typeCar3:'', typeCar4:'', amountCar:'', value:'', valuta:'', phone:'', email:'', userName:'', capacity:'', obem:'', about:' ', aboutHeigth:' ', aboutWidth:' ', aboutDepth:' ', tag0:'', tag1:''
+        dateFrom:today.toISOString().substring(0, 10), dateTo:today.toISOString().substring(0, 10), regionFrom:'Украина', regionTo:'Украина', cityFrom:'', cityTo:'', typeItem:'', typeCar0:'', typeCar1:'',typeCar2:'',typeCar3:'', typeCar4:'', amountCar:'', value:'', valuta:'', phone:'', email:'', userName:'', capacity:'', obem:'', about:'', aboutHeigth:'', aboutWidth:'', aboutDepth:'', tag0:'', tag1:''
     })
-
+    const [selectedOptionFrom, setOptionf] = useState()
+    const [selectedOptionTo, setOptiont] = useState()
+    let cityOption = require('./data.json')
+    var jsonQuery = require('json-query')
+    const [preFrom, setPreFrom] = useState({searched:''}) 
+    const [preTo, setPreTo] = useState({searched:''})
+    const [optionsFrom, setOptionsFrom] = useState([{value:'', label:''}])
+    const [optionsTo, setOptionsTo] = useState([{value:'', label:''}])
+    if(preFrom != form.regionFrom){
+        const res = jsonQuery(`regions[**][name=${form.regionFrom}].cities.name`,{data:cityOption, parents:form.regionFrom})
+        if(res.value!==null){
+            res.value.map((opti, index)=>{
+            optionsFrom[index] = {value:opti, label:opti}
+        }) }
+        setPreFrom(form.regionFrom)
+    }
+    if(preTo != form.regionTo){
+        const res = jsonQuery(`regions[**][name=${form.regionTo}].cities.name`,{data:cityOption, parents:form.regionTo})
+        if(res.value!==null){
+            res.value.map((opti, index)=>{
+            optionsTo[index] = {value:opti, label:opti}
+        }) }
+        setPreTo(form.regionTo)
+    }
     
     useEffect(() => {
         
@@ -48,17 +73,27 @@ export const CargoPage = () => {
 
         }
         catch(e){}
+        
     }
 
     const changeHandler = even => {
         form.email=userInfo.email
         form.phone=userInfo.phone
         form.userName=userInfo.userName
+        console.log(form)
         setForm ({...form, [even.target.name]: even.target.value})
     }
-
-    const addHandler = async () => {  
-       
+    const handlerChangeFrom = (selectedOptionFrom) => {
+        setOptionf(selectedOptionFrom)
+        console.log(selectedOptionFrom)
+        setForm ({...form, cityFrom: selectedOptionFrom.value})
+    }
+    const handlerChangeTo = (selectedOptionTo) => {
+        setOptiont(selectedOptionTo)
+        console.log(selectedOptionTo)
+        setForm ({...form, cityTo: selectedOptionTo.value})
+    }
+        const addHandler = async () => {  
         form.about = 'Шир:' + form.aboutWidth +' Выс:' + form.aboutHeigth +' Глуб:'+ form.aboutDepth
         console.log(form)
         try {
@@ -68,9 +103,6 @@ export const CargoPage = () => {
             message(data.message)
         }catch (e)
         {}
-    }
-
-    const changeSelector = () =>{
     }
  const mindata = Date.now()
 
@@ -83,7 +115,7 @@ export const CargoPage = () => {
         </div>
         <form className="col s12 m12 center" onSubmit="return false" >
         <div className="card #ffebee red lighten-5">
-                        <div className="card-content">
+            <div className="card-content">
             <div className="row" ></div>
             <div className="row" >
                 <div className="input-field col s6 m6">
@@ -102,7 +134,6 @@ export const CargoPage = () => {
                 </div>
                 <div className="col s1 m1"></div>
                 <div className="input-field col s6 m6">
-                
                     <input 
                     placeholder="yyyy-mm-dd"
                     type="date" 
@@ -124,7 +155,6 @@ export const CargoPage = () => {
                     id="regionFrom" 
                     type="text" 
                     name="regionFrom"
-                    className="autocomplete" 
                     value={form.regionFrom}
                     onChange={changeHandler}  
                     >
@@ -133,15 +163,15 @@ export const CargoPage = () => {
                     <label htmlFor="regionFrom">ОБЛАСТЬ ОТБЫТИЯ</label>
                 </div> 
                 <div className="input-field col s12 m6">
-                    <input 
-                    id="cityFrom" 
-                    type="text" 
-                    name="cityFrom"
-                    className="validate" 
-                    value={form.cityFrom}
-                    onChange={changeHandler} 
+                    
+                    <Select
+                        placeholder='ГОРОД'
+                        className="selectFrom"
+                        value={selectedOptionFrom}
+                        onChange={handlerChangeFrom}
+                        options={optionsFrom}
                     />
-                    <label htmlFor="cityFrom">ГОРОД</label>
+                    
                 </div>
                 <div className="input-field col s12 m6">
                 <select
@@ -157,20 +187,49 @@ export const CargoPage = () => {
                     </select>
                     <label htmlFor="regionTo">ОБЛАСТЬ ПРИЕЗДА</label>
                 </div>
-               
                 <div className="input-field col s12 m6">
-                    <input 
+                    <Select
+                        placeholder='ГОРОД'
+                        
+                        value={selectedOptionTo}
+                        onChange={handlerChangeTo}
+                        options={optionsTo}
+                    />
+                </div>
+            </div> 
+            {/* <select
+                    placeholder=""
                     id="cityTo" 
                     type="text" 
                     name="cityTo"
-                    className="validate" 
+                    className="autocomplete" 
                     value={form.cityTo}
+                    onChange={changeHandler}  
+                    readonly="false"
+                    >
+                        <CityFindOptions searched={form.regionTo}/>
+                    </select> */}
+                    {/* {options} */}
+                {/* <select
+                    id="cityFrom" 
+                    type="text" 
+                    name="cityFrom"
+                    value={form.cityFrom}
+                    onChange={changeHandler}  
+                    readonly="false"
+                    >
+                        <CityFindOptions searched={form.regionFrom}/>
+                    </select> */}
+                    
+                    {/* <CityComponent city={form.regionFrom} form={form} change={changeHandler}/> */}
+                    {/* <input 
+                    id="cityFrom" 
+                    type="text" 
+                    name="cityFrom"
+                    className="validate" 
+                    value={form.cityFrom}
                     onChange={changeHandler} 
-                    />
-                    <label htmlFor="cityTo">ГОРОД</label>
-                </div>
-            </div> 
-            
+                    /> */}
            
             {/* ГРУЗ ВЕС ОБ'ЄМ */}
             <div className="row" style={{borderTop:'1px solid'}} >

@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, {useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+
 
 export const AboutUsPage = () => {
 
@@ -23,6 +24,7 @@ export const AboutUsPage = () => {
         <NavLink className="sidenav-close red-text" to ="/search">НАЙТИ</NavLink>
         </div>
         </div>
+       
         </>
     )
 }

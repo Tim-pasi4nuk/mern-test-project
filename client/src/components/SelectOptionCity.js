@@ -2,8 +2,11 @@ import React from 'react'
 export const SelectOptionCity = () => {
     return (
         <>
-        
             <option value="Украина" selected>Украина</option>
+            <option value="Польша">Польша</option>
+            <option value="Чехия">Чехия</option>
+            <option value="Литва">Литва</option>
+            <option value="Латвия">Латвия</option>
             <option value="Винницкая область">Винницкая область</option>
             <option value="Волынская область" >Волынская область</option>
             <option value="Днепропетровская область">Днепропетровская область</option>
